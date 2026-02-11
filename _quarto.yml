@@ -1,12 +1,15 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs
   render:
     - index.qmd
     - "1. AS SCI/1. Installation/1. Atellica Sample Handler Configurations/1. Startup Instructions - Service Startup/AS_SH_ATP.qmd"
 
 website:
   title: "CB_DOC"
+  site-url: "https://edy888.github.io/doc/"
+  # если хочешь, можно явно:
+  # repo-url: "https://github.com/edy888/doc"
 
 format:
   html:
@@ -15,4 +18,3 @@ format:
 execute:
   enabled: false
   freeze: auto
-
