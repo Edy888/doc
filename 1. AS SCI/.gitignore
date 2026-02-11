@@ -1,0 +1,16 @@
+# Quarto output
+/_site/
+/_site_libs/
+/site_libs/
+/.quarto/
+/.quarto-cache/
+
+# Rendered html artifacts (common patterns)
+**/*_files/
+**/*.html
+
+# R stuff (если есть)
+.Rproj.user/
+.Rhistory
+.Rdata
+.Ruserdata

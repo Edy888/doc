@@ -1,0 +1,1633 @@
+---
+title: "Troubleshooting > Atellica CH > Troubleshooting Instructions > Service Software"
+
+format:
+  typst:
+    toc: false
+    papersize: a4
+    number-sections: false
+    tbl-number: false
+    margin:
+      x: 1cm
+      y: 1cm
+    include-in-header: theme.typ
+
+
+
+  html:
+    theme: cosmo
+    code-fold: true
+    toc: true
+    toc-depth: 6
+    toc-location: left
+    number-sections: false
+    tbl-number: false
+
+execute:
+  echo: true
+  warning: false
+---
+
+```{=typst}
+#v(2em)
+```
+
+![](png/0.png)
+
+{{< pagebreak >}}
+
+# 6 Self Diagnostics
+
+## 6.1 Autocheck
+
+### 6.1.1 Overview
+
+#### 6.1.1.1 Diagnostics Use
+
+**Autocheck** — это диагностическая функция, выполняемая в рамках **Daily Maintenance** и **Weekly Maintenance** для оценки работы аппаратных компонентов (hardware performance).
+
+Программное обеспечение **Atellica software** обнаруживает аппаратные ошибки (hardware errors) в процессе обычной работы (routine operation) и отображает сообщение об ошибке в **GUI**.
+
+В зависимости от расписания выполнения **Daily Maintenance** и **Weekly Maintenance**, система может продолжать работу с неисправным оборудованием до момента выполнения Autocheck в рамках этих процедур.  
+
+Однако **Autocheck** также может быть запущен по требованию (on demand) через **service software**.
+
+Autocheck помогает в определении первопричины (root cause), что способствует:
+
+- повышению показателя **first time repair rate**,
+- снижению **mean time to repair (MTTR)**.
+
+Например, если зонд (probe) не проходит тест по давлению промывки (rinse pressure), тесты Autocheck помогают определить, связано ли это с:
+
+- неисправностью transducer зонда,
+- ограничением потока (restriction),
+- неисправным насосом (pump) или inlet valve,
+- неисправным pressure relief valve,
+- неисправным high pressure pump.
+
+В этом примере **Atellica software** сообщает только о недостаточном давлении промывки (insufficient rinse pressure).
+
+Autocheck может использоваться для подтверждения того, что ремонт действительно устранил аппаратную неисправность, без выхода из **service software**.
+
+Иногда в процессе ремонта возможны сопутствующие повреждения или ошибки (например, устройство не было повторно подключено). Autocheck выявляет такие ошибки до передачи анализатора клиенту.
+
+Существует два типа отказов:
+
+- катастрофические (catastrophic),
+- постепенные (gradual).
+
+Autocheck выполняется ежедневно с целью прогнозирования постепенных отказов.
+
+Autocheck выполняет характеристику аппаратных компонентов (hardware characterization), например:
+- времена нарастания и спада давления водяных насосов (rise and fall times of water pumps).
+
+Эти характеристики могут использоваться:
+
+- для выявления дефектов поставщика (vendor defects),
+- для улучшения конструкции (design improvement).
+
+Autocheck также контролирует системные ресурсы, такие как:
+
+- доступная память (available memory),
+- свободное место на диске (disk space),
+- отказ жёстких дисков (failing hard drives).
+
+**Autocheck log** — это сжатый снимок (condensed snapshot) производительности модуля во время выполнения Autocheck.  
+Размер файла составляет менее 1 MB.
+
+Logfile содержит:
+
+- информацию о тестировании аппаратных компонентов,
+- сводку метрик датчиков (sensor metrics),
+- данные Process Errors за последние 5 дней,
+- 4-дневную сводку проблем аспирации реагентов,
+- 190 дней трендовых данных,
+- текущие alignments,
+- данные по reagent inventory,
+- 30 дней истории выгрузки реагентов,
+- сведения о последнем автоматическом обслуживании,
+- 2-летнюю историю Operator Diagnostics.
+
+---
+
+#### 6.1.1.2 Operational Description
+
+Autocheck может быть запущен нажатием кнопки **Start Autocheck**.
+
+После запуска кнопка **Start Autocheck** переименовывается в **Stop Autocheck** и становится зелёной, что указывает на выполнение теста.
+
+Autocheck можно прервать нажатием кнопки **Stop Autocheck**.
+
+При запуске Autocheck выполняет команду **Home All Subsystems**.
+
+По мере завершения отдельных тестов в рамках процедуры Autocheck результаты отображаются на экране.
+
+Для получения дополнительной информации о неудачных тестах (failed tests) или пропущенных тестах (skipped tests):
+
+- нажмите правой кнопкой мыши на соответствующее числовое значение — появится всплывающее меню (pop-up menu) с описанием тестов, которые не были выполнены или завершились с ошибкой;
+- любой элемент с символом «+» можно нажать для отображения всплывающего диалогового окна (pop-up dialog box) с дополнительной информацией о тестах.
+
+
+![Autocheck Tab - Start Autocheck](png/14.png){#fig-ch-self1 width="50%"}
+
+![Autocheck Tab - Stop Autocheck](png/15.png){#fig-ch-self2 width="50%"}
+
+![Autocheck Tab - Results](png/16.png){#fig-ch-self3 width="50%"}
+
+Нажатие на знак «+» рядом с результатом теста предоставляет дополнительную информацию, такую как данные (data) и/или графики (charts). Ниже приведена информация по каждому типу результата.
+
+Некоторые тесты выполняются немедленно после запуска **Autocheck** — отказ (failure) в этих тестах может практически сразу остановить выполнение Autocheck.
+
+Отказ теста **Analog Input High Pressure Transducer** может привести к отключению контура управления водой (water control loop) в начале выполнения Autocheck.
+
+![High Pressure Transducer Failed](png/17.png){#fig-ch-self4 width="90%"}
+
+![Water Bottle Empty](png/18.png){#fig-ch-self5 width="90%"}
+
+## 6.1.2 Digital Outputs
+
+**Digital Outputs** — это устройства, которые находятся либо в состоянии **On**, либо в состоянии **Off**.
+
+Во время выполнения **Autocheck** измеряется ток устройства (device current) в каждом из состояний и сравнивается с установленным пределом (limit).
+
+Приведённые ниже значения являются средними значениями для успешно проходящих тест устройств (passing values), рассчитанными на основе данных, собранных с приборов в полевых условиях (field instruments), и используются как справочные (reference).
+
+---
+
+**Tab: Digital Outputs**
+
+| Subsystem | Device | Value |
+|-----------|--------|-------|
+| DilutionArm | probe bleach pump | 650 |
+| DilutionArm | probe drain valve | 186 |
+| DilutionArm | probe imt drain valve | 186 |
+| DilutionArm | probe inlet valve | 187 |
+| DilutionArm | probe pump valve | 189 |
+| DilutionArm | saline pump | 58 |
+| DilutionArm | saline valve | 192 |
+| DilutionMixer | probe drain valve | 187 |
+| DilutionWasher | washer 1 solution pump | 477 |
+| DilutionWasher | washer 1 waste valve | 185 |
+| DilutionWasher | washer 1 water valve | 187 |
+| DilutionWasher | washer 2 waste valve | 185 |
+| DilutionWasher | washer 2 water valve | 186 |
+| DilutionWasher | washer 3 waste valve | 185 |
+| DilutionWasher | washer 3 water valve | 186 |
+| IMT | flush pump std A | 643 |
+| IMT | imt diluent valve | 193 |
+| IMT | salt bridge valve | 191 |
+| LiquidWaste | waste pump | 457 |
+| LysingAgentThermal | ted fan | 139 |
+| ReactionRingBathLevel | drain valve | 261 |
+| ReactionRingBathLevel | water valve | 190 |
+| ReactionWasher | washer 1 waste valve | 181 |
+| ReactionWasher | washer 1 water valve | 190 |
+| ReactionWasher | washer 2 solution pump | 474 |
+| ReactionWasher | washer 2 waste valve | 184 |
+| ReactionWasher | washer 2 water valve | 191 |
+| ReactionWasher | washer 3 solution pump | 474 |
+| ReactionWasher | washer 3 waste valve | 181 |
+| ReactionWasher | washer 3 water valve | 190 |
+| ReactionWasher | washer 4 waste valve | 181 |
+| ReactionWasher | washer 4 water valve | 189 |
+| ReactionWasher | washer 5 waste valve | 181 |
+| ReactionWasher | washer 5 water valve | 190 |
+| ReagentArm1 | probe drain valve | 186 |
+| ReagentArm1 | probe inlet valve | 187 |
+| ReagentArm1 | probe pump valve | 191 |
+| ReagentArm2 | probe drain valve | 186 |
+| ReagentArm2 | probe inlet valve | 187 |
+| ReagentArm2 | probe pump valve | 191 |
+| ReagentLoaderArm | gripper washer drain valve | 186 |
+| ReagentLoaderArm | gripper washer water valve | 186 |
+| ReagentMixer | probe drain valve | 186 |
+| ReagentServer1 | ted 1 fan | 387 |
+| ReagentServer1 | ted 2 fan | 399 |
+| ReagentServer2 | ted 1 fan | 375 |
+| ReagentServer2 | ted 2 fan | 386 |
+| SampleArm1 | probe drain valve | 186 |
+| SampleArm1 | probe inlet valve | 187 |
+| SampleArm1 | probe pump valve | 190 |
+| SampleMixer | probe drain valve | 187 |
+| SystemFluidCuvetteConditioner | bottle valve | 186 |
+| SystemFluidCuvetteWash | bottle valve | 187 |
+| SystemFluidProbeCleaner | bottle valve | 187 |
+| SystemFluidSalineDiluent | bottle valve | 187 |
+| WaterSupply | degasser vacuum pump | 468 |
+| WaterSupply | water supply inlet valve | 290 |
+
+
+## 6.1.3 Analog Inputs
+
+**Analog Inputs** — это измерительные компоненты, которые постоянно выдают значение, поскольку они предназначены для непрерывной работы (always meant to be on).
+
+Эти параметры измеряются во время выполнения **Autocheck**.
+
+Приведённые ниже значения являются средними значениями для успешно проходящих тест (passing values), рассчитанными на основе данных, собранных с приборов в полевых условиях (field instruments), и используются как справочные (reference).
+
+---
+
+**Tab: Analog Inputs**
+
+| Subsystem | Device | Value |
+|------------|--------|-------|
+| CuvetteWasherThermal | thermal fluid line control thermistor | 35 |
+| CuvetteWasherThermal | thermal fluid line verify thermistor | 35 |
+| Dilution Arm | pressure transducer (HSen) | 9082 |
+| Dilution Arm | pressure transducer (LSen) | 1714 |
+| IMT | imt diluent pressure transducer (HSen) | 9225 |
+| IMT | imt diluent pressure transducer (LSen) | 1746 |
+| IMT | imt thermistor | 33 |
+| IMT | peristaltic pressure transducer | -6 |
+| LysingAgentThermal | lysing agent ted thermistor | 15 |
+| MixerThermal | thermal fluid line control thermistor | 33 |
+| MixerThermal | thermal fluid line verify thermistor | 33 |
+| ProbeThermal | thermal fluid line control thermistor | 32 |
+| ProbeThermal | thermal fluid line verify thermistor | 32 |
+| ReactionRingBathThermal | reaction ring control thermistor | 37 |
+| ReactionRingBathThermal | reaction ring verify thermistor | 37 |
+| ReagentArm1 | pressure transducer (HSen) | 8981 |
+| ReagentArm1 | pressure transducer (LSen) | 1707 |
+| ReagentArm2 | pressure transducer (HSen) | 8962 |
+| ReagentArm2 | pressure transducer (LSen) | 1703 |
+| ReagentServer1Thermal | reagent server ted 1 thermistor | 8 |
+| ReagentServer1Thermal | reagent server ted 2 thermistor | 9 |
+| ReagentServer2Thermal | reagent server ted 1 thermistor | 9 |
+| ReagentServer2Thermal | reagent server ted 2 thermistor | 9 |
+| SampleArm1 | pressure transducer (HSen) | 9019 |
+| SampleArm1 | pressure transducer (LSen) | 1713 |
+| Vacuum | manifold pressure transducer | 5345 |
+| WaterSupply | high pressure transducer | 10 |
+| WaterSupply | inlet monitor thermistor | 29 |
+| WaterSupply | inlet verify thermistor | 29 |
+| WaterSupply | low pressure transducer | 10 |
+| WaterSupply | recirculation monitor thermistor | 32 |
+| WaterSupply | recirculation verify thermistor | 32 |
+| WaterSupply | tank level sensor | 82 |
+
+## 6.1.4 Utilities Test
+
+### 6.1.4.1 Vacuum Pump
+
+Расширенные требования к высоте установки (expanded Elevation requirements) привели к ужесточению требований к **Vacuum System**.
+
+В версии программного обеспечения 1.23 и выше (1.23+) **Autocheck** отображает доступный вакуум (available vacuum).
+
+
+![Autocheck - Vacuum Pump](png/19.png){#fig-ch-util1 width="90%"}
+
+
+В **Autocheck** доступно диалоговое окно (DialogBox), которое можно открыть, нажав на знак «+», чтобы отобразить факторы, влияющие на **Vacuum**.
+
+Пределы доступного вакуума (available vacuum limits) были определены в ходе испытаний в барометрической камере (Barometric chamber testing).
+
+![Vacuum Pump Test Detail Screen](png/20.png){#fig-ch-util2 width="90%"}
+
+Сначала измеряется скорость падения вакуума (vacuum system decay rate) — жёлтая линия на Fig. 107.  
+
+Для этого:
+
+- вакуумный насос (vacuum pump) выключается,
+- давление контролируется с помощью вакуумного датчика давления (vacuum pressure transducer) в течение 3,5 секунд,
+- скорость падения (decay rate) рассчитывается по наклону кривой давления вакуума.
+
+Затем измеряется скорость нарастания вакуума (vacuum system rise rate) — синяя линия на Fig. 107.
+
+Для этого:
+
+- вакуумный насос включается,
+- вакуумный датчик давления контролируется в течение 3,5 секунд,
+- скорость нарастания (rise rate) рассчитывается по наклону кривой давления вакуума.
+
+
+### 6.1.4.2 Pressure Relief Valve
+
+**Pressure Relief Valve** имеет два пороговых значения (thresholds):
+
+- при полностью открытом клапане (valve completely open) давление должно быть ниже 62 PSI;
+- при закрытом клапане (valve closed) давление должно быть выше 50 PSI.
+
+Спецификация для **pressure relief valve** составляет 58–62 PSI.
+
+Серая линия (gray line), отображаемая на графике Autocheck, соответствует равновесному давлению (equilibrium pressure) и должна находиться в диапазоне 50–62 PSI (пределы, обозначенные зелёными линиями — green line limits).
+
+![Autocheck Tab - Results - Pressure Relief Valve](png/21.png){#fig-ch-util3 width="90%"}
+
+Если в клапан попадает загрязнение (debris), он не может полностью закрыться, что препятствует увеличению давления.  
+
+В результате на графике Autocheck наблюдается медленный подъём давления (slow rise) вместо первоначального резкого роста (sharp rise).  
+(На графике ниже сравните CM00742 — исправный (good) и CM00741 — неисправный (bad)).
+
+Отказ теста давления промывки зонда (probe rinse pressure test failure) также является признаком неисправности **pressure relief valve**, который не может полностью закрыться.
+
+Падение давления промывки зонда (probe rinse pressure) составляет:
+
+- суммарно до 27 PSI для 4 rinse probes,  
+- или до 8 PSI для одного отдельного rinse probe.
+
+Если в тесте **probe rinse pressure** (PWI — probe water interaction в Autocheck log file) наблюдается отказ  
+(см. раздел 6.1.6.7 Probe Rinse Pressure), необходимо:
+
+1. Проверить тест **pressure relief valve** и оценить график профиля давления.
+2. Если в начале графика наблюдается медленный подъём вместо резкого роста — заменить **pressure relief valve**  
+   (см. документ *"Pressure Relief Valve Replacement"* в *Utilities and Fluidics Replacement Instructions / LDAT-010.841.02*).
+3. Если график pressure relief valve в норме — проверить тракт подачи воды высокого давления (high pressure water flow path) на наличие:
+
+   - загрязнений в manifold,
+   - загрязнений в клапанах,
+   - загрязнений во встроенном фильтре (inline filter) насоса низкого давления.
+4. В завершение проверить:
+
+   - high pressure pump,
+   - датчик давления (high pressure manifold transducer).
+
+![Pressure Relief Valve Graphing - Good vs. Bad](png/22.png){#fig-ch-util3 width="90%"}
+
+(1) Good (CM00741)
+(2) Bad (CM00742)
+
+### 6.1.4.3 UPS
+
+В результатах теста отображаются:
+
+- производитель (manufacturer),
+- продукт (product),
+- серийный номер (serial number),
+- версия прошивки (firmware).
+
+Во время выполнения данного теста также измеряются следующие параметры:
+
+- **Voltage (V)**  
+- **Current (A)**  
+- **Frequency (Hz)**  
+- **Config Voltage (V)**  
+- **Load (%)**
+
+Дополнительно выполняются следующие тесты:
+
+- **Battery Remaining Capacity (%)**  
+- **Battery Run Time (Minutes)**  
+- **Battery Voltage (V)**  
+
+Данные параметры доступны в диалоговом окне (DialogBox), которое открывается при нажатии на знак «+» рядом с названием теста.
+
+![Autocheck Tab - Results - UPS](png/23.png){#fig-ch-util4 width="90%"}
+
+### 6.1.4.4 Database Check
+
+Проверка таблиц базы данных выполняется с использованием SQL-команды **CHECKDB**.
+
+Время, необходимое для анализа целостности базы данных (database integrity), иногда может превышать время аппаратного тестирования, выполняемого Autocheck. В этом случае тест целостности базы данных прерывается (aborted).
+
+Обычно тест завершается примерно за одну минуту, однако в некоторых случаях может занимать значительно больше времени. Было принято решение, что Autocheck не должен ожидать завершения длительной проверки базы данных.
+
+База данных **Epsilon** также проверяется с использованием SQL-команды.
+
+Данная команда проверяет:
+
+- целостность таблиц базы данных,
+- структуру ключей (key structures).
+
+Если обнаружены ошибки, тест **Database Check** завершится с отказом (fail), и будет выведено сообщение об ошибке.  
+
+Также будет отображён минимальный уровень восстановления (minimum repair level).
+
+Для восстановления после данной проблемы необходимо воспользоваться процедурой восстановления (recovery procedure).
+
+![Autocheck Tab - Results - Database Check](png/24.png){#fig-ch-util5 width="90%"}
+
+## 6.1.5 Detectors
+
+### 6.1.5.1 Photometer Lamp Intensity
+
+![Autocheck Tab - Results - Photometer](png/25.png){#fig-ch-util6 width="90%"}
+
+Измерения интенсивности лампы (lamp intensity measurements) выполняются между кюветами (in-between cuvettes).
+
+Длины волн (wavelengths), которые находятся ниже предупредительного предела (warning limit) или выше предела насыщения (saturation limit), выделяются красным цветом.
+
+---
+
+**Static Read**
+
+В рамках данного теста выполняется 220 считываний (reads) между двумя кюветами реакционной ванны (reaction bath), после чего рассчитываются:
+
+- среднее значение (mean),
+- стандартное отклонение (Standard Deviation).
+
+Основное внимание при **Static Read** уделяется стандартному отклонению (Standard Deviation), которое должно быть менее 0.25.
+
+Среднее значение (mean) должно находиться в диапазоне от -2.0 до 2.0.
+
+Загрязнение ванны (Dirty Bath) обычно проявляется высокой вариабельностью на длинах волн 340, 410 и 694 нм (но не ограничивается ими), в то время как **RefCh** остаётся относительно стабильным.
+
+**RefCh** расположен вне ванны (outside of the bath) и служит контрольным каналом (control).
+
+---
+
+**Good Example**
+
+- **RefCh** (белая линия) остаётся относительно стабильным.
+- Все остальные длины волн, включая 340 nm, совпадают по поведению с **RefCh**, что указывает на чистую ванну (clean bath).
+
+![ Autocheck Tab - Results - Photometer Chart - Static Read (Good Example)](png/26.png){#fig-ch-util6 width="90%"}
+
+**Bad Example**
+
+- **RefCh** остаётся стабильным (не проходит через reaction bath).
+- Остальные длины волн, проходящие через ванну (reaction bath), демонстрируют выраженную вариабельность (vary greatly).
+
+Такой профиль указывает на загрязнение или проблему в reaction bath.
+
+![Example of a Bad Bath Static Read Graph](png/27.png){#fig-ch-util7 width="90%"}
+
+
+**Bad Example**
+
+- **Reference channel (RefCh)** соответствует ожидаемому поведению и остаётся стабильным для всех считываемых длин волн (read wavelengths).
+- Все считываемые длины волн деградируют (degrade) практически с одинаковой скоростью (near constant rate).
+
+Такой профиль может быть вызван наличием капель воды (water droplets) в световом модуле (light engine).
+
+![Example of Water Droplets in Light Engine - Static Read Graph](png/28.png){#fig-ch-util8 width="90%"}
+
+
+**Bad Example**
+
+- На графике наблюдается выраженный шум (noise) по множеству длин волн.
+- Для других длин волн значения измерений находятся близко к нулю (near zero).
+
+Причиной может быть плохо подключённый шлейф (poorly-connected ribbon cable).  
+
+Необходимо переустановить (reseat) кабель.
+
+![Example of Poorly-Connected Ribbon Cable - Static Read Graph](png/29.png){#fig-ch-util9 width="90%"}
+
+### Alignment Check
+
+Проверяется, находится ли фотометр (photometer) в диапазоне позиций от 1600 до 1900.
+
+При отказе (failure) значение будет отображено красным цветом.  
+(См. раздел **Photometer Auto-Alignment** в документе *"Cuvette Processing System Alignments" / LDAT-010.842.05*).
+
+---
+
+### Optical Path Ratio
+
+Данный тест сравнивает **reference channel (RefCh)** с различными источниками света.  
+
+Это сравнение позволяет определить, вызван ли шум (noise) светодиодом (LED), лампой (lamp) или другой проблемой.
+
+#### Tab. 10: Optical Path Ratio Descriptions
+
+| Reading | Description |
+|----------|------------|
+| **Bath to RefCh** | 11 длин волн проходят через reaction bath; коэффициент рассчитывается как среднее значение шума этих 11 длин волн, делённое на шум reference channel. <br><br>Если значение значительно выше 1 — шум исходит из ванны. <br>Рекомендация: если коэффициент ≥ 4 и на графике Static Read длины волн 340 nm, 410 nm и 694 nm демонстрируют высокую вариабельность, выполнить очистку ванны (bath cleaning). |
+| **Weighted Bath to RefCh** | Длина волны LED (340 nm) имеет вес в 3 раза больше, чем остальные 10 длин волн, после чего рассчитывается среднее значение. |
+| **3 Shortest WL to RefCh** | Средний шум для длин волн 340, 410 и 451 nm, делённый на шум reference channel. |
+| **Longest WL to RefCh** | Средний шум для длины волны 805 nm, делённый на шум reference channel. |
+| **Lamp to LED** | Средний шум 10 ламповых длин волн, делённый на средний шум длины волны LED. |
+
+---
+
+### LED Current
+
+Измеренные значения LED во время выполнения Autocheck.
+
+#### Tab. 11: LED Current Descriptions
+
+| Reading | Description |
+|----------|------------|
+| **LED Setting** | Значение, установленное цифровым потенциометром (digital potentiometer) для тока LED. |
+| **LED Current** | Фактически измеренный ток при данном значении настройки. Должен быть менее 16. |
+| **LED Resistance** | Отношение значения настройки к измеренному току. Значение >100 может указывать на отключение, неправильную пайку или другие проблемы с проводкой. |
+
+---
+
+### Pooled Variance
+
+Данный тест аналогичен **PQCV**, но выполняется без прохождения через кюветы и за сокращённое время (примерно 4 секунды).
+
+#### Tab. 12: Pooled Variance Descriptions
+
+| Reading | Description |
+|-------|---------------|
+| **Short Mean Failures** | Значение pooled variance выше предела (0.04) в скользящем окне из шести измерений — short mean failure. Тест предназначен для выявления электрического шума в системе фотометра, но может также реагировать на загрязнение reaction bath. |
+| **Full Mean Failures** | Значение pooled variance выше предела (0.04) по всем 220 измерениям — full mean failure. Тест демонстрирует влияние загрязнённой reaction bath на PQCV. |
+| **Largest Short Mean** | Наибольшее значение среди всех рассчитанных short mean. |
+| **Largest Full Mean** | Наибольшее значение среди рассчитанных full mean. |
+
+![Good Pooled Variance Graph](png/30.png){#fig-ch-util10 width="50%"}
+
+![Partially Bad Pooled Variance Chart](png/31.png){#fig-ch-util11 width="50%"}
+
+![Partially Bad Pooled Variance Graph](png/32.png){#fig-ch-util12 width="50%"}
+
+### 6.1.5.2 IMT
+
+:::callout-note
+IMT не будет отображаться на данном экране, если IMT отключён (disabled) в UIW.
+:::
+
+В подсистеме **IMT** выполняются 5 тестов:
+
+- **Sample Port Drain Time**  
+- **Peristaltic Pump Pressure Ramp**  
+- **Dilution Check Correction Factor Check**  
+- **IMT Rotary Valve Charge**  
+- **IMT Read**
+
+---
+
+### Peristaltic Pump Pressure Ramp
+
+Перистальтический насос IMT (**IMT Peristaltic Pump**) работает до тех пор, пока давление не достигнет 3000, либо в течение максимального времени около 16 секунд.
+
+Профиль давления (pressure profile) анализируется на наличие потерь давления (pressure loss).
+
+Потери давления рассчитываются как интеграл падений давления — то есть участков, где наклон между соседними точками отрицательный (point-to-point slope is negative).
+
+Дополнительно измеряется вакуумное давление (Vacuum pressure) в момент, когда суммарные потери давления превышают 100.
+
+![Autocheck Tab - Results - IMT Peristaltic Pump Pressure Ramp](png/33.png){#fig-ch-util13 width="50%"}
+
+### Dilution Check Correction Factor Check
+
+Данный тест отображает коэффициент коррекции (correction factor) для **Dilution Check**.
+
+Если коэффициент коррекции не найден, будет выведено предупреждение (warning).
+
+См. этапы выполнения **Dilution Check** в процедуре *CH ATP Checkout / LDAT-000.836.02*.
+
+
+:::callout-note
+Приведённый ниже график предназначен для иллюстрации отказа (failure) статуса **Dilution Check correction factor**, несмотря на то что на нём отображён график **Sample Port Drain**.
+:::
+
+![Autocheck Tab - Results - Dilution Check](png/34.png){#fig-ch-util14 width="50%"}
+
+### IMT Rotary Valve Charge
+
+Роторный клапан (rotary valve) переводится в заблокированное положение (blocked position), после чего перистальтический насос создаёт вакуум.
+
+Когда вакуум достигает порогового значения 2600, насос останавливается, и давление контролируется на предмет утечек (leaking).
+
+Скорость набора вакуума (vacuum charge rate) и скорость удержания вакуума (vacuum hold rate) рассчитываются с использованием линейной регрессии (linear regression).
+
+Данный тест выполняется в позиции **Standard A**.
+
+- Минимальная скорость набора (minimum charge rate) в настоящее время составляет 100/сек.
+- Минимальная скорость удержания (minimum hold rate) составляет -30/сек  
+  (значение ниже этого предела считается отказом).
+
+![Autocheck Tab - Results - IMT Rotary Valve Charge](png/35.png){#fig-ch-util15 width="50%"}
+
+### Sample Port Drain Time
+
+Время (скорость) дренирования **IMT Sample Port** измеряется путём заполнения sample port раствором **A-LYTE diluent** с помощью **IMT Diluent meter pump**, после чего открывается слив на вакуум при одновременном контроле давления через датчик **Diluent Pump pressure transducer**.
+
+Допустимое время полного опорожнения (Drain Rate to empty) должно быть < 1.70 секунды.
+
+---
+
+Процедура теста:
+
+1. Выполняется праймирование (priming) 750 μL **A-LYTE diluent** через sample port  
+   (по 250 μL три раза) с помощью IMT Diluent meter pump, при положении **Rotary Valve** в позиции **Clean**.
+
+2. Затем **Rotary Valve** переводится в положение **Std-A Blocked**, и sample port заполняется 570 μL  
+   (по 190 μL три раза) A-LYTE diluent.
+
+3. Фиксируется базовое значение давления при заполнении (Full pressure baseline).
+
+4. **Rotary Valve** переводится в положение **Clean**, и регистрируется профиль давления при опорожнении (Emptying pressure profile).
+
+5. Затем **Rotary Valve** снова переводится в положение **Std-A Blocked**, и фиксируется финальное базовое значение давления после опорожнения (Empty/Final pressure baseline).
+
+---
+
+Если тест завершается отказом из-за:
+
+- превышения максимально допустимого времени дренирования,
+- либо превышения допустимых пределов качества сигнала (signal quality measurements),
+
+тест выполняется повторно.
+
+---
+
+Дополнительные расчёты:
+
+- Рассчитываются стандартные отклонения (Standard Deviations) для статических измерений при заполненном и пустом состоянии.  
+  Типичное значение ≈ 4.0.  
+  Максимально допустимое значение — 30.0.
+
+- Рассчитывается разница между статическими измерениями при полном и пустом состоянии.  
+  Типичное значение ≈ 80.0.  
+  Должно быть ≥ 1.0.
+
+![Autocheck Tab - Results - IMT Sample Port Drain](png/36.png){#fig-ch-util15 width="50%"}
+
+### IMT Read
+
+В рамках данного теста выполняется считывание сигнала с сенсора (sensor), чтобы подтвердить наличие связи (communication).
+
+---
+
+## 6.1.6 Complimentary Device Tests
+
+### 6.1.6.1 Alignments
+
+Отображаются цели (targets), которые не выровнены (not aligned).
+
+Выполните автоматическое выравнивание с использованием вкладки **Auto Align** (если применимо) или выполните ручную юстировку (manual alignment) при необходимости.
+
+---
+
+### 6.1.6.2 Dynamic Fluid Pressure
+
+Тест **Dynamic Fluid Pressure (DFP)** контролирует датчик давления (pressure transducer) во время движения жидкости.
+
+В отличие от него, тест на утечку зонда (probe leak test) контролирует датчик давления при статической жидкости.
+
+- Статический тест (static test) выявляет медленные утечки.
+- Динамический тест (dynamic test) выявляет засоры (obstructions) и сопротивление потоку жидкости (fluid resistance).
+
+---
+
+Во время теста выполняются три измерения в следующей последовательности:
+
+1. **Static baseline** — при отсутствии движения жидкости.  
+2. **Air baseline** — при аспирации воздуха над сливом (above the drain).  
+3. **Water aspirate** — при аспирации воды из кюветы.
+
+---
+
+**Static baseline** фиксируется при вертикальном положении зонда (probe vertical at home). Насос в этот момент не работает.
+
+**Air baseline** также фиксируется при вертикальном положении зонда.  
+Если данный этап завершается отказом, это обычно указывает на:
+
+- неисправность клапана (failed valve),
+- наличие воздуха в системе флюидики (air in the fluidics system).
+
+Для теста **Water aspirate** вода сначала дозируется в кювету, затем аспирируется из неё.
+
+---
+
+Типовые причины отказов:
+
+- Отказ по пределам диапазона (range limits) обычно связан с проблемами насоса (pump issues).
+- Отказ по разнице (delta) между water и air aspirate обычно связан с ограничениями в тракте жидкости (fluid path restrictions).
+
+---
+
+В диаграмме результатов:
+
+- **W-A Pressure Drop** = давление при аспирации воды минус давление при аспирации воздуха.
+- Измеряется в сегменте перемещения (slew segment — средняя часть графика).
+
+Интерпретация:
+
+- Если чёрная линия (air) совпадает или почти совпадает с синей линией (water), вода не аспирируется — аспирируется только воздух.
+- Если синяя линия близка к нулю, имеется засор между датчиком давления (transducer) и наконечником зонда (probe tip).
+- Минимальные и максимальные пределы для каждого arm указаны в таблице результатов теста.
+
+Если диапазоны air и water в части slew segment демонстрируют высокую вариабельность (см. max ranges), возможна проблема с ходовым винтом поршня (lead screw in the piston).
+
+Значения, превышающие допустимые диапазоны или min/max пределы, отображаются красным цветом.
+
+![Autocheck Tab - Results - Dynamic Fluid Pressure](png/37.png){#fig-ch-util16 width="50%"}
+
+
+### 6.1.6.3 Water Sensors
+
+Данный тест проверяет корректность калибровок бутылей воды (water bottle calibrations).
+
+Также контролируются два температурных датчика:
+
+- датчик температуры входящей воды (input water),
+- датчик температуры циркулирующей воды (circulating water).
+
+Тест позволяет выявить неправильное подключение (wiring) этих датчиков.  
+Если система обнаружит возможную ошибку подключения, появится предупреждение (warning).
+
+Необходимо визуально проверить корректность подключения датчиков.
+
+Дополнительно тест проверяет уровень заполнения бутылей воды (water bottle fill level) и выдаёт предупреждение, если бутыль пуста.
+
+![Water Bottle Empty](png/38.png){#fig-ch-util17 width="80%"}
+
+### 6.1.6.4 Probe Sensors
+
+Данный тест определяет наличие ошибок состояния датчиков зонда (probe sensors),  
+например, если датчик crash detector находится в состоянии **ON**, в то время как датчик вертикального исходного положения (vertical home sensor) также находится в состоянии **ON**.
+
+Тест проверяет:
+
+- датчики зондов четырёх transfer arms,
+- датчики washer probes.
+
+---
+
+### 6.1.6.5 Lowest Working Current
+
+С использованием бинарного поиска (binary search) изменяется ток двигателя (motor current) для определения минимального значения тока, при котором механизм не теряет позицию (does not lose position).
+
+Алгоритм:
+
+- Начальный уровень тока устанавливается на 64% от рабочего тока (operating current).
+- Если механизм работает корректно, следующий уровень устанавливается на 32%.
+- Если при 64% механизм не работает, тестируется 96%.
+- Поиск продолжается до тех пор, пока разница между рабочим и отказавшим уровнем тока не составит 2%.
+
+![Autocheck Tab - Results - Lowest Working Current](png/39.png){#fig-ch-util18 width="80%"}
+
+### 6.1.6.6 Motor Backlash
+
+**Backlash** — это расстояние, которое должен пройти двигатель (motor) после смены направления, прежде чем начнётся фактическое движение механизма.
+
+Если последнее перемещение двигателя было в положительном направлении (positive direction), а новая целевая позиция находится в отрицательном направлении (negative direction), может потребоваться некоторое количество шагов для устранения люфта (backlash) в зубчатой передаче или натяжении ремня (belt tension), прежде чем механизм начнёт двигаться.
+
+В данном тесте для измерения backlash используется датчик исходного положения (**home sensor**).
+
+---
+
+#### Последовательность теста
+
+1. Двигатель переводится в исходное положение (home), которое определяется при движении в отрицательном направлении.
+
+2. Затем двигатель перемещается пошагово в положительном направлении до тех пор, пока home sensor не отключится (go off).  
+   Это перемещение должно быть равно количеству шагов **OnTo** плюс backlash при переходе из отрицательного в положительное направление (**NtoP**).
+
+3. Затем двигатель пошагово перемещается в отрицательном направлении до повторного срабатывания home sensor (go back on).  
+   Количество шагов до повторного включения датчика — это backlash при переходе из положительного в отрицательное направление (**PtoN**).
+
+4. Затем двигатель снова перемещается пошагово в положительном направлении до отключения home sensor.  
+   Количество шагов до повторного отключения — это backlash при переходе из отрицательного в положительное направление (**NtoP**).
+
+---
+
+Для большинства двигателей значения **PtoN** и **NtoP** равны.  
+Однако это может отличаться при наличии дополнительных сил, воздействующих на механизм, например:
+
+- силы тяжести,
+- пружин.
+
+Из двух значений backlash показатель **PtoN** обычно более точен.  
+Это может быть связано с внешними силами (например, сжатие поршня), отталкивающими двигатель от позиции home.
+
+---
+
+#### Возможные источники ошибки
+
+- Гистерезис (hysteresis) датчика home:  
+  точка включения датчика при движении в отрицательном направлении отличается от точки его отключения при движении в положительном направлении.  
+  Иначе говоря, если датчик включён, он склонен оставаться включённым; если выключен — оставаться выключенным.
+
+- Вибрации механизма (или резонанс двигателя — motor ringing), которые могут привести к преждевременному или запаздывающему срабатыванию датчика.
+
+Для компенсации вибраций между шагом двигателя и считыванием датчика вводится временная задержка (time delay).
+
+---
+
+Данные теста доступны в диалоговом окне (DialogBox), которое открывается при нажатии на знак «+» рядом с названием теста.
+
+![ Autocheck Tab - Results - Motor Backlash](png/40.png){#fig-ch-util19 width="80%"}
+
+
+### 6.1.6.7 Probe Rinse Pressure
+
+Данный тест состоит из трёх частей, отображаемых на экране:
+
+---
+
+#### 1. Pressure
+
+В рамках этого теста поочерёдно включаются inlet valve и pump valve для каждого зонда (probe).
+
+Давление должно находиться в диапазоне 31.0–60.0 PSI.
+
+---
+
+#### 2. Loaded
+
+В завершение теста все четыре зонда включаются одновременно, чтобы убедиться, что:
+
+- падение давления для любого отдельного зонда не превышает 8 PSI,
+- суммарное падение давления для четырёх зондов не превышает 27 PSI.
+
+---
+
+#### 3. Decay
+
+После отключения клапана давление должно вернуться к атмосферному уровню (ambient pressure) в течение 50 мс.
+
+---
+
+:::callout-note
+Давление в зондаx reagent arm 1 и reagent arm 2 должно быть ниже, чем в зондаx sample arm и dilution arm.
+:::
+
+![Autocheck Tab - Results - Probe Rinse Pressure](png/41.png){#fig-ch-util20 width="80%"}
+
+
+Если тест **Probe Rinse Pressure** завершился с отказом, см. раздел  
+6.1.4.2 **Pressure Relief Valve** для получения дополнительной информации о возможных причинах.
+
+---
+
+### 6.1.6.8 Probe Level Sense
+
+Данный тест выполняет два проверки (tests) для каждого transfer arm.
+
+---
+
+- 1. Wash Station Detection Test
+
+Используется функция **probe level sense** для определения наличия воды в wash station.
+
+Границы (edges) отображаются на графике в правой части экрана.
+
+Если наблюдается значительное смещение от центра wash station, цвет отображения изменится на красный.
+
+После отключения drain valve выполняется тест decay: измеряется, насколько быстро зонд обнаруживает воду в wash station после повторного открытия клапана.
+
+---
+
+- 2. Dry Test
+
+Dry test выполняется путём перемещения transfer arm над кольцом (ring), затем вертикально к верхней части кюветы (top of cuvette).
+
+Во время этого движения контролируется сигнал level sense.
+
+Если фиксируются какие-либо переходы сигнала (transitions), возникает отказ dry failure.
+
+Если тест завершился с отказом, необходимо проверить цепь level sense от наконечника зонда (probe tip) до платы level sense board на наличие неисправностей.
+
+![Autocheck Tab - Results - Probe Level Sense](png/42.png){#fig-ch-util21 width="80%"}
+
+![Autocheck Tab - Results - Probe Level Sense Failure](png/43.png){#fig-ch-util22 width="80%"}
+
+### 6.1.6.9 Probe Leak Test
+
+Тест **Probe Leak Test** проверяет целостность (fluid system integrity) флюидической системы механизма путём создания небольших изменений давления и контроля способности системы удерживать это давление.
+
+Для удержания давления флюидическая система должна быть замкнута.  
+Для этого каждый механизм оснащён специальной площадкой (pad) на alignment fixture.  
+Когда наконечник зонда (probe tip) касается этой площадки, флюидическая система замыкается.
+
+:::callout-note
+Пределы теста Probe Leak Test изменяются для отрицательного давления (pressure negative), положительного давления (pressure positive) и линии (line) в зависимости от введённой высоты установки (elevation) на вкладке **Sequences → Install Instrument**.
+:::
+
+---
+
+### Последовательность теста
+
+Перед запуском предполагается, что флюидическая система была праймирована (primed).
+
+#### 1. Baseline
+
+При вертикальном моторе в положении home с использованием **Meter pump** аспирируется небольшой воздушный зазор (air gap) объёмом 17 μL в зонд.
+
+Данные собираются в течение 0,5 секунды для получения базового давления (baseline pressure).
+
+---
+
+#### 2. Expand
+
+Зонд переводится в контакт с pad (система замыкается).
+
+Создаётся отрицательное давление путём увеличения воздушного зазора ещё на 20 μL с использованием Meter pump  
+(соотношение сжатия 17:37).
+
+Данные собираются в течение 1 секунды для получения кривой отклика отрицательного давления (negative pressure response curve).
+
+---
+
+#### 3. Compress
+
+Отрицательное давление снимается, затем создаётся положительное давление путём сжатия воздушного зазора на 6 μL  
+(соотношение сжатия 17:11).
+
+Данные собираются в течение 1 секунды для получения кривой отклика положительного давления (positive pressure response curve).
+
+---
+
+#### 4. IValve
+
+Положительное давление снимается, и открывается **Probe Pump Valve**.  
+Это открывает флюидическую линию до inlet valve на high pressure water manifold.
+
+---
+
+#### 5. Expand Line
+
+Снова создаётся отрицательное давление путём увеличения воздушного зазора на 25 μL  
+(соотношение сжатия 17:42).
+
+Данные собираются в течение 1 секунды для получения кривой отклика отрицательного давления линии (Line negative pressure response curve).
+
+---
+
+#### 6. PValve
+
+Отрицательное давление снимается, вертикальный мотор возвращается в положение home, и **Probe Pump Valve** открывается.
+
+---
+
+### Обработка данных
+
+- Данные проходят медианную фильтрацию (median filter) с окном 7 точек.
+- Наклон кривых давления рассчитывается методом линейной регрессии (linear regression).
+
+---
+
+### Рассчитываются шесть параметров:
+
+1. Δ отрицательного давления Meter pump и скорость утечки при отрицательном давлении.  
+2. Δ положительного давления Meter pump и скорость утечки при положительном давлении.  
+3. Δ отрицательного давления линии (Line Meter pump negative pressure delta) и скорость утечки при отрицательном давлении линии.
+
+![Autocheck Tab - Results - Probe Leak Test (Good Example)](png/44.png){#fig-ch-util23 width="80%"}
+
+![Autocheck Tab - Results - Probe Leak Test (Failed Example)](png/45.png){#fig-ch-util24 width="80%"}
+
+### 6.1.6.10 Saline Pump Test
+
+Данный тест измеряет показания датчика давления (pressure transducer) на **dilution arm** после включения **saline pump** и **saline valve**.
+
+Синяя линия на графике отображает среднее давление (mean pressure) между значениями **Start** и **Off**  
+(в приведённом примере — между 0.40 и 0.80).
+
+Для успешного прохождения теста синяя линия должна находиться выше зелёной линии (green line).
+
+
+![Autocheck Tab - Results - Saline Pump Test](png/46.png){#fig-ch-util25 width="80%"}
+
+
+### 6.1.6.11 Bleach Pump
+
+Данный тест измеряет объём жидкости, подаваемый **bleach pump**.
+
+Расчёт выполняется следующим образом:
+
+1. Раствор bleach удаляется из bleach port с использованием зонда **dilution arm**.
+2. Затем измеряется уровень (height), чтобы определить объём жидкости, подаваемый за один ход насоса (per stroke) bleach pump.
+
+![Autocheck Tab - Results - Bleach Pump Test](png/47.png){#fig-ch-util26 width="80%"}
+
+### 6.1.6.12 Dilution Washer Testing
+
+#### Overview
+
+Данный тест оценивает работу skimmer путём заполнения кювет до заданного уровня и измерения разницы уровня жидкости после того, как skimmer удаляет воду из кюветы.
+
+Аспирационная линия (aspirate line) каждого washer тестируется до полного опорожнения кюветы. Затем кювета промывается для проверки работы water valve. После этого кювета снова опорожняется.
+
+Solution pump используется для подачи точного объёма жидкости в кювету.
+
+Скорость потока (flow rate) через water valves измеряется путём открытия клапанов на разное время с последующим измерением объёма.
+
+---
+
+### Этапы теста
+
+#### Full
+
+Transfer arm заполняет кюветы водой (460 µL).  
+Высота жидкости в кювете измеряется с помощью dilution arm.
+
+---
+
+#### Skim
+
+Кюветы перемещаются к dilution washer.  
+Wash probes опускаются в воду.  
+
+После завершения skimming зонд поднимается, и повторно измеряется высота оставшейся воды.
+
+---
+
+#### Empty
+
+Включается waste valve и оставшаяся вода удаляется.  
+Кювета перемещается к transfer arm probe, который подтверждает полное удаление воды.
+
+Процедура выполняется последовательно для каждого зонда.  
+Если трубки зондов перепутаны (crossed tubing), будет отображено событие ошибки.
+
+---
+
+#### Wash
+
+Кюветы возвращаются в washer.  
+Water valve включается для одной кюветы, затем высота воды измеряется dilution arm для подтверждения подачи воды.
+
+---
+
+#### Pump
+
+Для probe 1:
+
+- transfer arm подаёт 100 µL воды в кювету;
+- probe 1 опускается в кювету;
+- solution pump probe 1 выполняет 12 циклов.
+
+Кювета возвращается к transfer arm для измерения уровня.
+
+Разница объёма рассчитывается и делится на 12 — таким образом определяется объём одного хода solution pump (pump volume).
+
+---
+
+#### Vacuum Ratio
+
+Тест рассчитывает величину вакуума на наконечнике зонда (probe tip) как отношение показаний:
+
+Washer Pressure Transducer и Vacuum Manifold Pressure Transducer  
+относительно базовой линии (baseline).  
+
+(Из каждого датчика предварительно вычитается baseline — ambient pressure.)
+
+**Pressure Ratio = Washer Pressure Sensor delta / Vacuum Pressure Sensor delta**
+
+---
+
+##### High Vacuum Ratio
+
+Определяется при открытии Washer 1 Waste Valve для проверки засоров.
+
+Высокое значение фиксируется, если:
+
+Δ Washer Pressure > Δ Vacuum Manifold Pressure
+
+Обычно указывает на ограничение (restriction) между Washer Pressure Transducer и Wash Probe.
+
+Также возможна ситуация, когда автоматическое отключение vacuum pump вызывает сопутствующее событие.
+
+---
+
+##### Low Vacuum Ratio
+
+Определяется при открытии Washer 1 Waste Valve.
+
+Низкое значение фиксируется, если:
+
+Δ Washer Pressure < Δ Vacuum Manifold Pressure
+
+Обычно указывает на:
+
+- ограничение между Washer Pressure Transducer и Vacuum Manifold,
+- либо недостаточный вакуум.
+
+Автоматическое отключение vacuum pump также может вызвать сопутствующее событие.
+
+---
+
+#### Valve On Time
+
+Кюветы опорожнены.
+
+Water valves включаются на 100 мс, затем измеряется высота воды transfer arm.
+
+Затем клапан включается ещё три раза на более длительные интервалы.
+
+Выполняется линейная регрессия для расчёта расхода в µL/с через клапан.
+
+---
+
+#### Concentration
+
+Концентрация раствора в кювете рассчитывается на основе:
+
+flow rate и объёма раствора.
+
+Формула:
+
+Concentration = pump volume / water volume  
+где water volume = flow rate × valve on time
+
+![Autocheck Tab - Results - Dilution Washer Testing](png/48.png){#fig-ch-util27 width="80%"}
+
+
+### 6.1.6.13 Reaction Washer Testing
+
+#### Overview
+
+Данный тест оценивает работу skimmer путём заполнения кювет до заданного уровня и измерения разницы уровня жидкости после того, как skimmer удаляет воду из кюветы.
+
+Аспирационная линия (aspirate line) каждого washer тестируется до полного опорожнения кюветы. Затем кювета промывается для проверки работы water valve. После этого кювета снова опорожняется.
+
+Solution pumps используются для подачи точного объёма жидкости в кювету.
+
+Скорость потока (flow rate) через water valves измеряется путём открытия клапанов на разное время с последующим измерением объёма.
+
+---
+
+### Этапы теста
+
+#### Full
+
+Transfer arm заполняет кюветы водой (460 µL).  
+Высота воды измеряется с помощью **reagent arm 2**.
+
+---
+
+#### Skim
+
+Кюветы перемещаются к **reaction washer**.  
+Wash probes опускаются в воду.
+
+После завершения skimming зонды поднимаются, и повторно измеряется высота оставшейся воды.
+
+---
+
+#### Empty
+
+Включается waste valve и оставшаяся вода удаляется.  
+Кювета перемещается к transfer arm probe, который подтверждает удаление воды.
+
+Процедура выполняется последовательно для каждого зонда.  
+Если трубки зондов перепутаны (crossed tubing), будет отображено событие ошибки.
+
+---
+
+#### Wash
+
+Кюветы возвращаются в washer.  
+Water valve включается для одной кюветы, затем высота воды измеряется **reagent arm 2** для подтверждения подачи воды.
+
+---
+
+#### Pump
+
+Для probes 2 и 3:
+
+- transfer arm подаёт 100 µL воды в кювету;
+- probes 2 и 3 опускаются в кювету;
+- solution pumps 2 и 3 выполняют 12 циклов.
+
+Кювета возвращается к transfer arm для измерения уровня.
+
+Разница объёма рассчитывается и делится на 12 — таким образом определяется объём одного хода solution pump (pump volume).
+
+---
+
+#### Valve On Time
+
+Кюветы опорожнены.
+
+Water valves включаются на 100 мс, затем измеряется высота воды transfer arm.
+
+Затем клапан включается ещё три раза на более длительные интервалы.
+
+Выполняется линейная регрессия для расчёта расхода в µL/с через клапан.
+
+---
+
+#### Concentration
+
+Концентрация раствора в кювете рассчитывается на основе:
+
+- flow rate,
+- объёма раствора.
+
+Формула:
+
+Concentration = pump volume / water volume  
+
+где  
+water volume = flow rate × valve on time
+
+![Autocheck Tab - Results - Reaction Washer Testing](png/49.png){#fig-ch-util28 width="80%"}
+
+При установке прибора на высоте более 2000 метров (> 2000 m) **Reaction Washer Probe 1** может оставлять в кювете недостаточный объём воды после промывки для соответствия минимальному пределу 140 µL.
+
+Для систем, установленных на высоте > 2000 m, минимальный предел для **Reaction Washer Probe 1** снижен до 90 µL.
+
+Данное изменение отображается в версии программного обеспечения 1.23 и выше (1.23+) для систем, установленных на высоте более 2000 метров.
+
+![Reaction Washer Results - High Altitude (>2000 m)](png/50.png){#fig-ch-util29 width="80%"}
+
+## 6.2 Autocheck Subsystem
+
+**Autocheck Subsystem** предназначен преимущественно для устранения неисправностей (troubleshooting) отдельных подсистем, а не для квалификации всей системы (system qualification).
+
+![Autocheck Subsystem Tab](png/51.png){#fig-ch-util30 width="80%"}
+
+
+{{< pagebreak >}}
+
+# 8 Query Tools
+
+## 8.1 Health
+
+Вкладка **Health** содержит 3 подвкладки (subtabs), которые позволяют выполнять различные запросы (queries) к данным прибора (instrument data):  
+**Overview**, **Autochecks** и **Health Reports**.
+
+## 8.1.1 Overview
+
+Вкладка **Overview** позволяет пользователю просматривать process errors и данные **Autocheck** за выбранный пользователем период времени (user-defined period of time).
+
+:::callout-note
+IMT не будет отображаться на данном экране, если IMT был отключён (disabled) в **UIW**.
+:::
+
+![Health Tab - Overview Sub-tab](png/1.png){#fig-ch-ss width="90%"}
+
+## 8.1.2 Autochecks
+
+Данная подвкладка (sub-tab) позволяет пользователям выполнять запросы (query) к данным **Autocheck**, выполненным на анализаторе **CH analyzer**.
+
+Выберите **Autocheck** в левой части экрана, чтобы отобразить (populate) соответствующие данные данного теста в правой части экрана.
+
+![Autocheck Results](png/2.png){#fig-ch-autocheck width="90%"}
+
+## 8.1.3 Health Reports
+
+Данная подвкладка (sub-tab) позволяет пользователю создавать новые **Health Reports**, а также просматривать / экспортировать новые и ранее созданные отчёты.
+
+![Health Tab - Health Reports Sub-tab](png/3.png){#fig-ch-tab1 width="90%"}
+
+Выполните следующую процедуру для создания нового отчёта и просмотра / экспорта нового (или существующего) **Health Report**:
+
+1. Установите **Start Time** и **End Time** для создаваемого отчёта.  
+2. Нажмите **Create New**.  
+
+![Health Tab - Health Reports Sub-tab - Report Complete](png/4.png){#fig-ch-tab2 width="90%"}
+
+
+После завершения формирования отчёта появится диалоговое окно. 
+
+3. Нажмите **View** или **Export**.
+
+![Health Tab- Health Reports Sub-tab - View / Export Report](png/5.png){#fig-ch-tab3 width="90%"}
+
+- **View:** отчёт будет открыт в **Adobe Acrobat Reader**.  
+
+- **Export:** откроется окно **Windows Explorer** для сохранения файла.
+
+Если появляется окно «Please insert a disk into Floppy Disk Drive (A:).», нажмите **Cancel**.
+
+
+![Health Tab - Health Reports Sub-tab - Export Report Floppy Message](png/6.png){#fig-ch-tab4 width="90%"}
+
+
+Перейдите в соответствующее расположение (location) и нажмите **Save**.
+
+![Health Tab - Health Reports Sub-tab - Export Location](png/7.png){#fig-ch-tab5 width="90%"}
+
+
+## 8.2 Charts
+
+Функция **Charts** используется для анализа трендов (trends) в данных **Autocheck**.
+
+![Charts - Autocheck Data](png/8.png){#fig-ch-charts1 width="90%"}
+
+
+---
+
+## 8.2.1 Basic Functions
+
+### Filter
+
+С помощью раскрывающегося меню (drop-down menu) пользователь может отфильтровать подмножества данных:
+
+- по различным тестам (расположены во вкладке **Autocheck Data**),  
+- либо по заданному временному периоду (расположены во вкладках **IMT Cal**, **IMT Data** и **LOCI Data**).
+
+После извлечения (retrieve) данные отображаются в окне данных (data box).  
+
+Также отображается диапазон данных (data range), который описывает:
+- временной период, выбранный для данного набора данных,
+- количество точек данных (data points), входящих в диапазон.
+
+После получения данных их можно отобразить графически.
+
+:::callout-note
+В подвкладке **PPA Data** вместо использования фильтра для получения архивных данных применяется кнопка **Retrieve Data** для получения текущих данных прибора (current instrument data).
+:::
+
+---
+
+### Graph Data
+
+После выбора фильтров в различных раскрывающихся меню пользователь может построить график данных, нажав кнопку **Graph Data**.
+
+---
+
+### Save Data
+
+Пользователь может сохранить отфильтрованные данные, нажав кнопку **Save Data**.  
+
+Будет создан новый файл формата **.csv**, содержащий только данные, отфильтрованные пользователем.  
+
+Имя файла и путь сохранения (location) будут отображены в диалоговом окне.
+
+---
+
+### Print Data
+
+После построения графика пользователь может нажать кнопку **Print Data**, чтобы распечатать график данных.  
+
+Появится диалоговое окно, позволяющее:
+- предварительно просмотреть данные (preview),
+- выбрать принтер.
+
+В распечатке будут указаны:
+- имя прибора (instrument name),
+- объединённый список фильтров и подфильтров (concatenated list of filters and subfilters),
+- диапазон данных (data range) — в нижней части страницы.
+
+:::callout-note
+Если удерживать клавишу **Ctrl** на клавиатуре во время нажатия кнопки **Print Data**, будет создан снимок экрана (screenshot) всего экрана построения графиков. Имя файла будет отображено.
+:::
+
+---
+
+### Help
+
+Небольшая кнопка с вопросительным знаком (question mark button) расположена под окном отображения данных (data display box) в нижней части экрана.  
+
+При нажатии отображается всплывающее окно (popup box), содержащее полезную информацию о текущей подвкладке, включая:
+- как выполнить filter / retrieve,
+- построение графика (graph),
+- печать (print),
+- сохранение данных (save).
+
+---
+
+## 8.2.2 Autocheck Data
+
+Вкладка **Autocheck Data** позволяет использовать каскадную систему фильтров (cascading set of filters) для сужения объёма данных, отображаемых графически.
+
+При каждом последующем выборе фильтра — слева направо — объём отображаемых данных уменьшается.
+
+Если доступен только один вариант подфильтра (subfilter option), программное обеспечение автоматически выбирает его (auto-select).
+
+Пользователь должен продолжать выбирать подфильтры до тех пор, пока кнопка **Graph Data** не станет активной (enabled).
+
+## 8.2.2 Autocheck Data
+
+Вкладка **Autocheck Data** позволяет использовать каскадный набор фильтров (cascading set of filters) для сужения объёма данных, отображаемых графически.
+
+При каждом последующем выборе фильтра — слева направо — пользователь уменьшает объём данных, выводимых на график.
+
+Если доступен только один вариант подфильтра (subfilter option), программное обеспечение автоматически выбирает его (auto-select).
+
+Пользователь должен продолжать выбирать подфильтры до тех пор, пока кнопка **Graph Data** не станет активной (enabled).
+
+![Charts - Autocheck Data](png/8.png){#fig-ch-charts2 width="90%"}
+
+
+| Name | Description |
+|------|-------------|
+| **Select Test Name** | Тип теста, используемого для сбора различных диагностических данных по подсистеме (subsystem) или серии подсистем. |
+| **Test Version** | В некоторых случаях тесты обновляются в связи с изменением пределов (limits) или других параметров. В данном раскрывающемся меню (drop-down menu) отображается версия теста (test version), применяемая к данным. |
+| **Select Device Name** | Данное меню позволяет пользователю выбрать подмножество данных для конкретной системы или подсистемы. |
+| **Select Data Name** | Данный финальный фильтр позволяет выбрать итоговый расчёт (final calculation) на основе выбранного теста (#1), например: **Delta**, **Average**, **Standard Deviation** и т.д. Как и остальные подфильтры (#2–#4), данный параметр специфичен для выбранного теста. |
+| **PASS / FAIL Status** | В данной области окна данных (data box) отображается статус **PASS / FAIL** для теста Autocheck. |
+| **Data Label** | Данная метка (отображается при наведении курсора на точку графика) показывает номер точки данных (data point #), дату / время расчёта, а также статус **PASS / FAIL** для данного теста. |
+| **Limits** | Если выполняемый тест **Autocheck** имеет количественные пределы (quantitative limits), они отображаются в крайнем правом столбце окна данных (data box). |
+
+
+## 8.2.3 IMT Cal
+
+![Charts - IMT Cal](png/9.png){#fig-ch-charts3 width="90%"}
+
+| Name | Description |
+|------|-------------|
+| **Time Period Filter** | Определяет временной период (time period), в пределах которого будут отфильтрованы данные калибровки (calibration data), например: *Past two weeks*. |
+| **Signal Filter** | Определяет сигнал калибровки (calibration signal), который будет отфильтрован для построения графика (graphing). |
+| **Data Point Label** | Содержит идентификатор калибровки (calibration ID — x) и значение сигнала (signal value — y). |
+| **Signal Data Display** | Отображает данные сигнала в формате точки данных (data point — x) и значения сигнала (signal value — y). |
+
+## 8.2.4 IMT Data
+
+![Charts - IMT Data](png/10.png){#fig-ch-charts4 width="90%"}
+
+| Name | Description |
+|------|-------------|
+| **Time Period Filter** | Определяет временной период (time period), в пределах которого будут отфильтрованы данные теста (test data), например: *Past four weeks*. |
+| **Signal Filter** | Определяет тестовый сигнал (test signal), который будет отфильтрован для построения графика (graphing). |
+| **Data Point Label** | Содержит идентификатор теста (test ID — x) и значение сигнала (signal value — y). |
+| **Signal Data Display** | Отображает данные сигнала в формате точки данных (data point — x) и значения сигнала (signal value — y). |
+
+
+## 8.2.5 PPA Data
+
+Данный тест использует данные, которые динамически сохраняются в памяти прибора (instrument’s memory) при запуске прибора и НЕ сохраняются в базе данных (database).
+
+Чтобы просмотреть данные:
+
+1. Нажмите кнопку **Retrieve Data**.
+
+:::callout-note
+Если данные не отображаются (no data is retrieved), необходимо выполнить **IMT pump alignment**.
+:::
+
+2. Перейдите во вкладку **Sequences**, затем выберите **IMT** в левой части экрана.  
+3. Нажмите кнопку **Align Pump Cycle**, чтобы создать данные.  
+
+![Charts - PPA Data](png/11.png){#fig-ch-charts5 width="90%"}
+
+4. Вернитесь в подвкладку **PPA Data** вкладки **Charts** и снова нажмите кнопку **Retrieve Data**.
+
+## 8.2.6 Cuvette Ring Temp
+
+При нажатии кнопки **Start Test** в данной вкладке отображается график температуры кольца кювет (cuvette ring temperature). Нажмите кнопку **Stop Test**, чтобы остановить построение графика. Повторное нажатие кнопки **Start Test** очистит график (clear the graph) и запустит тест заново.
+
+![Charts - Cuvette Ring Temp](png/12.png){#fig-ch-charts6 width="90%"}
+
+
+
+## 8.3 DB-Tools
+
+:::callout-note
+Для доступа к **DB-Tools** в **Service Software** приостанавливать работу анализатора (pause) не требуется.
+:::
+
+## 8.3.1 SRS Data Extraction Procedure
+
+1. Перейдите в раздел **Diagnostics**.  
+2. Нажмите вкладку **DB-Tools**.  
+3. Заполните пронумерованные поля следующим образом:
+
+![DB Tools Screen](png/13.png){#fig-ch-charts7 width="90%"}
+
+
+
+| Step # in Software Screen | Description |
+|-------|--------------------|
+| **Step 1** | **Query Description** — Введите имя создаваемого файла (например, *SN CALDATA*). Пробелы допускаются, но избегайте использования символов (см. Step #1 на Fig. 238).  <br><br>**Note:** Данное описание будет частью имени файла. |
+| **Step 2** | При необходимости введите данные в одно или несколько следующих полей (см. Step #2 на Fig. 238):  <br><br>**Method Name** — Введите знак процента (%) для выбора всех методов. Для одного метода введите его аббревиатуру. Электролиты выбираются с использованием «lytes». Поле не чувствительно к регистру (not case-sensitive).  <br><br>**Sample ID** — Введите Sample ID для выполнения запроса (если применимо).  <br><br>**Test ID** — Введите Test ID для выполнения запроса (если применимо).  <br><br>**Note:** Установите соответствующий флажок **NOT LIKE**, чтобы выполнить запрос данных, отличающихся от значения, введённого в полях **Method Name:** или **Sample ID:**. |
+| **Step 3** | **Dates** (см. Step #3 на Fig. 238):  <br><br>**Begin Date** — выберите дату и время начала сбора данных.  <br><br>**End Date** — выберите дату и время окончания сбора данных. |
+| **Step 4** | **Select Data Query** — Выберите **Calibration** для получения данных по калибровкам (Calibrations), линейности (Linearity), верификации (Verification) и прецизионности (Precision).  <br><br>Выберите **Results** для получения данных корреляции (Correlation data) (см. Step #4 на Fig. 238).  <br><br>Другие типы данных включают:  <br><br>Alignments  <br>Bulk_Fluids  <br>Calculations  <br>Calibration  <br>Device_Check  <br>Errors  <br>IMT  <br>IMT_Calibration  <br>IMT_Maintenance  <br>IMT_Maintenance_Log  <br>IMT_Unused_RawData  <br>Instrument_Event  <br>Instrument_State  <br>Photometer  <br>ProcessErrors  <br>QC_Results  <br>Reagent_Inventory  <br>Results  <br>Results_Calculations  <br>ResultsMonitor  <br>Test_Count |
+
+4. Выберите соответствующий тип файла (обычно это формат **.csv**).
+
+5. Нажмите **Save**.  
+
+Имя файла отобразится с автоматически добавленной датой.
+
+# 9 Appendix: Manual Procedures
+
+## 9.1 Level Sense Reliability Manual Procedures
+
+:::callout-note
+Данные процедуры применимы для программного обеспечения версии 1.20 и более ранних версий.
+:::
+
+---
+
+## 9.1.1 Reagent Arm Level Sense Reliability
+
+1. Снимите крышку **Reagent Server Cover**.  
+
+2. Снимите съёмный колпачок (removable cap) с 2 пустых **Reagent Packs** и добавьте по 2 mL водопроводной воды (tap water) в **Well 1**.  
+   Один pack подготавливается для каждого сервера.  
+   Колпачки остаются снятыми на время выполнения теста.
+
+3. Вручную установите reagent pack в первый слот внешнего кольца (outer ring) **Reagent Server 1**.
+
+4. Нажмите вкладку **Subsystem**, затем выберите **ReagentServer1**.
+
+5. Инициализируйте подсистему **ReagentServer1**, затем переместите её в положение **Outer Wedge Well 1**.
+
+6. Переместите **ReagentArm1 Angular** в положение **OuterReagentWell1**.
+
+:::callout-note
+Зонд **ReagentArm1** должен быть номинально отцентрирован над открытым Well 1.
+:::
+
+7. Инициализируйте подсистему **ReagentArm1**.
+
+8. Вручную установите reagent pack в первый слот внешнего кольца **Reagent Server 2**.
+
+9. Выполните Home для подсистемы **ReagentServer2**, затем переместите её в положение **OuterReagentWell1**.
+
+10. На вкладке **Subsystem** выберите **ReagentServer2**.
+
+11. Переместите **ReagentArm2 Angular** в положение **OuterReagentWell1**.
+
+:::callout-note
+Зонд **ReagentArm2** должен быть номинально отцентрирован над открытым Well 1.
+:::
+
+12. Инициализируйте подсистему **ReagentArm2**.
+
+13. Установите обратно **Reagent Server Cover**.
+
+14. Перейдите на вкладку **Sequences** и выберите процедуру **Level Sense Reliability**.
+
+15. Установите следующие параметры для **Reagent Arm 1** и **Reagent Arm 2**:
+
+- **Angular Position:** OuterReagentWell1  
+- **Vertical Target:** BottomOfReagent  
+- **Seek Form:** Reagent Arm Vertical Fast Seek  
+- **Demanded Steps:** 20000  
+- **Ignore Steps:** 20000  
+- **Return to Drain:** Checked  
+- **Prime Before Level Sense:** Checked  
+
+16. Нажмите **Level Sense Start** для запуска цикла level sense.
+
+17. Дайте системе выполнить не менее 200 циклов.
+
+18. После завершения циклов (~10 минут) оцените:
+
+- **Maximum и Minimum Values**  
+- **Angular Transition Counts**
+
+Оценка:
+
+- **Angular (A):** не должно быть angular transitions  
+- **Drain (D):** должно быть приблизительно в 4 раза больше количества выполненных циклов  
+
+---
+
+## 9.1.2 Sample Arm Level Sense Reliability
+
+1. Войдите в меню **Instrument Diagnostics** и выполните **Initialize All Subsystems**.
+
+2. Перейдите во вкладку **Subsystem**, выберите **SampleArm1**.
+
+3. Инициализируйте подсистему — **Sample Arm** переместится к сливу (drain).
+
+4. Выберите **Angular DilutionCuvette**, чтобы переместить arm над **Dilution Cuvette** (позиция аспирации Sample Arm).  
+   Зонд должен быть отцентрирован над кюветой.  
+   Перед следующим шагом убедитесь, что кювета не содержит жидкости.
+
+5. Инициализируйте подсистему для возврата **Sample Arm** к сливу.
+
+6. Пипетируйте 250 μL **CH Diluent (saline)** в dilution cuvette в позиции аспирации.
+
+7. Перейдите во вкладку **Sequences** и выберите процедуру **Level Sense Reliability**.
+
+8. Установите параметры для **Sample Arm**:
+
+- **Angular Position:** DilutionCuvette  
+- **Vertical Target:** BottomOfDilutionCuvette  
+- **Seek Form:** Sample Arm Vertical Fast Seek  
+- **Demanded Steps:** 7300  
+- **Ignore Steps:** 7300  
+- **Return to Drain:** Checked  
+- **Prime Before Level Sense:** Checked  
+
+9. Нажмите **Level Sense Start**.
+
+10. Выполните не менее 200 циклов.
+
+11. После завершения (~10 минут) оцените:
+
+- **Maximum и Minimum Values**  
+- **Angular Transition Counts**
+
+Оценка:
+
+- **Angular (A):** не должно быть angular transitions  
+- **Drain (D):** должно быть приблизительно в 4 раза больше количества выполненных циклов  
+
+---
+
+## 9.1.3 Dilution Arm Level Sense Reliability
+
+1. Войдите в меню **Instrument Diagnostics** и выполните **Initialize All Subsystems**.
+
+2. Перейдите во вкладку **Subsystem**, выберите **DilutionArm**.
+
+3. Инициализируйте подсистему — **Dilution Arm** переместится к сливу.
+
+4. Выберите **Angular DilutionCuvette**, чтобы переместить arm над **Dilution Cuvette** (позиция аспирации Dilution Arm).  
+   Зонд должен быть отцентрирован над кюветой.  
+   Перед следующим шагом убедитесь, что кювета не содержит жидкости.
+
+5. Инициализируйте подсистему для возврата arm к сливу.
+
+6. Пипетируйте 250 μL **CH Diluent (saline)** в dilution cuvette в позиции аспирации.
+
+7. Перейдите во вкладку **Sequences** и выберите процедуру **Level Sense Reliability**.
+
+8. Установите параметры для **Dilution Arm**:
+
+- **Angular Position:** DilutionCuvette  
+- **Vertical Target:** BottomOfDilutionCuvette  
+- **Seek Form:** Dilution Arm Vertical Fast Seek  
+- **Demanded Steps:** 7300  
+- **Ignore Steps:** 7300  
+- **Return to Drain:** Checked  
+- **Prime Before Level Sense:** Checked  
+
+9. Нажмите **Level Sense Start**.
+
+10. Выполните не менее 200 циклов.
+
+11. После завершения (~10 минут) оцените:
+
+- **Maximum и Minimum Values**  
+- **Angular Transition Counts**
+
+Оценка:
+
+- **Angular (A):** не должно быть angular transitions  
+- **Drain (D):** должно быть приблизительно в 4 раза больше количества выполненных циклов  
