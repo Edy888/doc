@@ -3,7 +3,7 @@ project:
   output-dir: _site
   render:
     - index.qmd
-    - AS SH ATP.qmd
+    - "1. AS SCI/1. Installation/1. Atellica Sample Handler Configurations/1. Startup Instructions - Service Startup/AS_SH_ATP.qmd"
 
 website:
   title: "CB_DOC"
@@ -13,4 +13,6 @@ format:
     toc: true
 
 execute:
+  enabled: false
   freeze: auto
+

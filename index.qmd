@@ -7,4 +7,4 @@ format: html
 
 Документация.
 
-- [Transformation tables](Transformation_tables_assay_param.qmd)
+- [Atellica CH ATP Checkout](AS SH ATP.qmd)
