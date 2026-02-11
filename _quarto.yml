@@ -3,6 +3,7 @@ project:
   output-dir: _site
   render:
     - index.qmd
+    - AS SH ATP.qmd
 
 website:
   title: "CB_DOC"
