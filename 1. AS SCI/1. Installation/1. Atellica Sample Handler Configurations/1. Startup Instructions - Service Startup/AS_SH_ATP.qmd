@@ -2,8 +2,6 @@
 title: "ATP Checkout: Installation - Atellica with SH Configuration - Startup Instructions"
 
 
-
-
 format:
 
   html:
