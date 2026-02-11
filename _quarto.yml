@@ -1,20 +1,31 @@
 project:
   type: website
   output-dir: docs
-  render:
-    - index.qmd
-    - "1. AS SCI/1. Installation/1. Atellica Sample Handler Configurations/1. Startup Instructions - Service Startup/AS_SH_ATP.qmd"
 
 website:
   title: "CB_DOC"
   site-url: "https://edy888.github.io/doc/"
-  # если хочешь, можно явно:
-  # repo-url: "https://github.com/edy888/doc"
+
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "AS SCI"
+        contents:
+          - text: "ATP Checkout (Atellica + SH) — Startup Instructions"
+            href: "1. AS SCI/1. Installation/1. Atellica Sample Handler Configurations/1. Startup Instructions - Service Startup/AS_SH_ATP.qmd"
 
 format:
   html:
     toc: true
+    toc-depth: 6
 
 execute:
   enabled: false
-  freeze: auto
+
+freeze: auto

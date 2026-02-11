@@ -5,6 +5,6 @@ format: html
 
 # CB_DOC
 
-Документация.
+Документация (Quarto + GitHub Pages).
 
-- [Atellica CH ATP Checkout](AS_SH_ATP.qmd)
+Открой нужный документ через меню слева.

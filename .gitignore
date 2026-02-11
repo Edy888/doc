@@ -10,3 +10,6 @@ site_libs/
 # R
 .Rhistory
 .Rproj.user/
+
+/.quarto/
+**/*.quarto_ipynb
