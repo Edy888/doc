@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "CB_DOC"
+
+format:
+  html:
+    toc: true
+
+execute:
+  freeze: auto
