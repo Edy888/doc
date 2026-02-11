@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ATP Checkout: Installation - Atellica with SH Configuration - Startup Instructions – CB_DOC</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="floating quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#atp-checkout" id="toc-atp-checkout" class="nav-link active" data-scroll-target="#atp-checkout">20 ATP Checkout</a>
+  <ul>
+  <li><a href="#ch-atp-checkout" id="toc-ch-atp-checkout" class="nav-link" data-scroll-target="#ch-atp-checkout">20.1 CH ATP Checkout</a>
+  <ul>
+  <li><a href="#supplies-needed" id="toc-supplies-needed" class="nav-link" data-scroll-target="#supplies-needed">20.1.1 Supplies Needed</a></li>
+  <li><a href="#perform-atp-checkout" id="toc-perform-atp-checkout" class="nav-link" data-scroll-target="#perform-atp-checkout">20.1.2 Perform ATP Checkout</a></li>
+  <li><a href="#export-results-экспорт-результатов" id="toc-export-results-экспорт-результатов" class="nav-link" data-scroll-target="#export-results-экспорт-результатов">20.1.3 Export Results / <strong>Экспорт результатов</strong></a>
+  <ul>
+  <li><a href="#export-results-from-srs-экспорт-результатов-через-srs" id="toc-export-results-from-srs-экспорт-результатов-через-srs" class="nav-link" data-scroll-target="#export-results-from-srs-экспорт-результатов-через-srs">20.1.3.1 Export Results from SRS / <strong>Экспорт результатов через SRS</strong></a></li>
+  <li><a href="#export-results-with-no-srs-connectivity-экспорт-результатов-при-отсутствии-подключения-к-srs" id="toc-export-results-with-no-srs-connectivity-экспорт-результатов-при-отсутствии-подключения-к-srs" class="nav-link" data-scroll-target="#export-results-with-no-srs-connectivity-экспорт-результатов-при-отсутствии-подключения-к-srs">20.1.3.2 Export Results with No SRS Connectivity / <strong>Экспорт результатов при отсутствии подключения к SRS</strong></a></li>
+  </ul></li>
+  <li><a href="#perform-ch-atp-выполнение-ch-atp-v1.26" id="toc-perform-ch-atp-выполнение-ch-atp-v1.26" class="nav-link" data-scroll-target="#perform-ch-atp-выполнение-ch-atp-v1.26">20.1.4 Perform CH ATP / <strong>Выполнение CH ATP</strong> &gt;= V1.26</a>
+  <ul>
+  <li><a href="#service-assay-testing-тестирование-сервисных-анализов" id="toc-service-assay-testing-тестирование-сервисных-анализов" class="nav-link" data-scroll-target="#service-assay-testing-тестирование-сервисных-анализов">20.1.4.1 Service Assay Testing / <strong>Тестирование сервисных анализов</strong></a></li>
+  <li><a href="#perform-assay-calibration-выполнение-калибровки-анализов" id="toc-perform-assay-calibration-выполнение-калибровки-анализов" class="nav-link" data-scroll-target="#perform-assay-calibration-выполнение-калибровки-анализов">20.1.4.2 Perform Assay Calibration / <strong>Выполнение калибровки анализов</strong></a></li>
+  <li><a href="#alt-qc-level-1" id="toc-alt-qc-level-1" class="nav-link" data-scroll-target="#alt-qc-level-1">20.1.4.3 ALT QC Level 1</a></li>
+  <li><a href="#assay-testing" id="toc-assay-testing" class="nav-link" data-scroll-target="#assay-testing">20.1.4.4 Assay Testing</a></li>
+  </ul></li>
+  <li><a href="#atp-rerun-guidelines-and-basic-troubleshooting" id="toc-atp-rerun-guidelines-and-basic-troubleshooting" class="nav-link" data-scroll-target="#atp-rerun-guidelines-and-basic-troubleshooting">20.1.5 ATP Rerun Guidelines and Basic Troubleshooting</a></li>
+  </ul></li>
+  <li><a href="#im-atp-checkout" id="toc-im-atp-checkout" class="nav-link" data-scroll-target="#im-atp-checkout">20.2 IM ATP Checkout</a>
+  <ul>
+  <li><a href="#assay-calibrations-and-verifications-for-software-v1.26-and-later" id="toc-assay-calibrations-and-verifications-for-software-v1.26-and-later" class="nav-link" data-scroll-target="#assay-calibrations-and-verifications-for-software-v1.26-and-later">20.2.1 Assay Calibrations and Verifications for Software v1.26 and Later</a>
+  <ul>
+  <li><a href="#perform-assay-calibrations-v1.26-and-later" id="toc-perform-assay-calibrations-v1.26-and-later" class="nav-link" data-scroll-target="#perform-assay-calibrations-v1.26-and-later">20.2.1.1 Perform Assay Calibrations (v1.26 and Later)</a>
+  <ul class="collapse">
+  <li><a href="#perform-system-verification-assays-run-a-v1.26-and-later" id="toc-perform-system-verification-assays-run-a-v1.26-and-later" class="nav-link" data-scroll-target="#perform-system-verification-assays-run-a-v1.26-and-later">20.2.1.2 Perform System Verification Assays – Run A (v1.26 and Later)</a></li>
+  </ul></li>
+  <li><a href="#perform-system-verification-assays-run-b-v1.26-and-later" id="toc-perform-system-verification-assays-run-b-v1.26-and-later" class="nav-link" data-scroll-target="#perform-system-verification-assays-run-b-v1.26-and-later">20.2.1.3 Perform System Verification Assays – Run B (v1.26 and Later)</a></li>
+  </ul></li>
+  <li><a href="#analyze-and-verify-the-final-data" id="toc-analyze-and-verify-the-final-data" class="nav-link" data-scroll-target="#analyze-and-verify-the-final-data">20.2.2 Analyze and Verify the Final Data</a></li>
+  <li><a href="#troubleshooting-atp" id="toc-troubleshooting-atp" class="nav-link" data-scroll-target="#troubleshooting-atp">20.2.3 Troubleshooting ATP</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="AS_SH_ATP.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ATP Checkout: Installation - Atellica with SH Configuration - Startup Instructions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
+<section id="atp-checkout" class="level1">
+<h1>20 ATP Checkout</h1>
+<section id="ch-atp-checkout" class="level2">
+<h2 class="anchored" data-anchor-id="ch-atp-checkout">20.1 CH ATP Checkout</h2>
+<p>Процедуры <strong>CH ATP Checkout</strong> незначительно отличаются в зависимости от версии программного обеспечения, установленного на анализаторе. Определите версию ПО и следуйте соответствующей процедуре:</p>
+<ul>
+<li><strong>CH ATP checkout для версии ПО 1.26 и выше:</strong> см. <strong>20.1.4 Perform CH ATP</strong></li>
+<li><strong>CH ATP checkout для версии ПО 1.25.X и ниже:</strong> см. <em>Atellica Solution ATP Troubleshooting</em> / <strong>LDAT-000.840.55</strong></li>
+</ul>
+<p><strong>Используемые реагенты и калибраторы</strong></p>
+<p><strong>Reagent / Calibrator:</strong></p>
+<ul>
+<li>ALT<br>
+</li>
+<li>Enzyme 2<br>
+</li>
+<li>GluH_3<br>
+</li>
+<li>CHEM CAL<br>
+</li>
+<li>Amm<br>
+</li>
+<li>CHEM III CAL<br>
+</li>
+<li>Sal<br>
+</li>
+<li>Tox</li>
+</ul>
+<section id="supplies-needed" class="level4">
+<h4 class="anchored" data-anchor-id="supplies-needed">20.1.1 Supplies Needed</h4>
+<p><strong>Расходные материалы, заказываемые у Siemens Healthineers</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>SMN</th>
+<th>Description</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>11099311</td>
+<td>Atellica CH CHK</td>
+<td>1 Pack</td>
+</tr>
+<tr class="even">
+<td>11099364</td>
+<td>Atellica CH AMIX Pack</td>
+<td>1 Vial</td>
+</tr>
+<tr class="odd">
+<td>11099300</td>
+<td>Atellica CH Diluent</td>
+<td>1 Container</td>
+</tr>
+<tr class="even">
+<td>11099301</td>
+<td>Atellica CH Wash</td>
+<td>1 Container</td>
+</tr>
+<tr class="odd">
+<td>11099302</td>
+<td>Atellica CH Conditioner</td>
+<td>1 Container</td>
+</tr>
+<tr class="even">
+<td>11099303</td>
+<td>Atellica CH Cleaner</td>
+<td>1 Container</td>
+</tr>
+<tr class="odd">
+<td>11099312</td>
+<td>Atellica CH Reagent Probe Cleaner 1</td>
+<td>1 Pack (set)</td>
+</tr>
+<tr class="even">
+<td>11099312</td>
+<td>Atellica CH Reagent Probe Cleaner 2</td>
+<td>1 Pack (set)</td>
+</tr>
+<tr class="odd">
+<td>11099309</td>
+<td>Atellica CH Reagent Probe Cleaner 4</td>
+<td>1 Pack (set)</td>
+</tr>
+<tr class="even">
+<td>11099325</td>
+<td>A-LYTE IMT Dilution Check</td>
+<td>1 Bottle</td>
+</tr>
+<tr class="odd">
+<td>11099304</td>
+<td>A-LYTE IMT Standard A</td>
+<td>1 Container</td>
+</tr>
+<tr class="even">
+<td>11099305</td>
+<td>A-LYTE IMT Diluent</td>
+<td>1 Container</td>
+</tr>
+<tr class="odd">
+<td>11099306</td>
+<td>A-LYTE IMT Standard B + Salt Bridge</td>
+<td>1 Container</td>
+</tr>
+<tr class="even">
+<td>11099315</td>
+<td>A-LYTE Integrated Multisensor</td>
+<td>1 Cartridge</td>
+</tr>
+<tr class="odd">
+<td>11099411</td>
+<td>CHEM CAL</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>11099335</td>
+<td>CHEM III CAL</td>
+<td>1 Box</td>
+</tr>
+<tr class="odd">
+<td>11097592</td>
+<td>Glucose Hexokinase_3 (GluH_3)</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>11099318</td>
+<td>Enzyme 2 Calibrator</td>
+<td>1 Box</td>
+</tr>
+<tr class="odd">
+<td>11097605</td>
+<td>Alanine Aminotransferase (ALT)</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>11097529</td>
+<td>Ammonia</td>
+<td>1 Box</td>
+</tr>
+<tr class="odd">
+<td>11097523</td>
+<td>Atellica CH Sal</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>11099440</td>
+<td>Atellica CH Toxicology Calibration</td>
+<td>1 Box</td>
+</tr>
+<tr class="odd">
+<td>10284945</td>
+<td>BioRad Liquid Assayed MultiQual Level 1</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>10284946</td>
+<td>BioRad Liquid Assayed MultiQual Level 2</td>
+<td>1 Box</td>
+</tr>
+<tr class="odd">
+<td>10284965</td>
+<td>BioRad Liquid Assayed MultiQual Level 3</td>
+<td>1 Box</td>
+</tr>
+<tr class="even">
+<td>10470794</td>
+<td>BioRad Liquicheck Ethanol / Ammonia Control</td>
+<td>1 Box</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="perform-atp-checkout" class="level3">
+<h3 class="anchored" data-anchor-id="perform-atp-checkout">20.1.2 Perform ATP Checkout</h3>
+<p>Используйте таблицу ниже для определения дальнейших действий в зависимости от результатов тестирования:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>First Test Result</th>
+<th>Action</th>
+<th>Second Test Result</th>
+<th>Action</th>
+<th>Third Test Result</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PASS</td>
+<td>Сообщить результаты и перейти к следующему этапу</td>
+<td>N/A</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FAIL</td>
+<td>Повторить тест</td>
+<td>PASS</td>
+<td>Повторить тест для подтверждения</td>
+<td>PASS</td>
+<td>Сообщить результаты и перейти далее</td>
+</tr>
+<tr class="odd">
+<td>FAIL</td>
+<td>Повторить тест</td>
+<td>FAIL</td>
+<td>Устранить неисправность</td>
+<td>—</td>
+<td>См. <strong>20.1.5 ATP Rerun Guidelines and Basic Troubleshooting</strong></td>
+</tr>
+<tr class="even">
+<td>FAIL</td>
+<td>Устранить неисправность</td>
+<td>N/A</td>
+<td>—</td>
+<td>—</td>
+<td>См. <strong>20.1.5 ATP Rerun Guidelines and Basic Troubleshooting</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Чувствительность аппаратных компонентов для CH ATP анализов</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assay</th>
+<th>Hardware Component Sensitivity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PQCV</td>
+<td>Стабильность фотометра, точность / линейность, юстировка относительно реакционного кольца, оптическое состояние реакционной кюветы</td>
+</tr>
+<tr class="even">
+<td>PSN10</td>
+<td>Дозирование образца / разведения, юстировка и контроль уровня жидкости</td>
+</tr>
+<tr class="odd">
+<td>P1N20</td>
+<td>Дозирование реагента зондом 1 (без «chase»), юстировка и контроль уровня жидкости</td>
+</tr>
+<tr class="even">
+<td>P1C20</td>
+<td>Дозирование реагента зондом 1 (с «chase»), юстировка и контроль уровня жидкости</td>
+</tr>
+<tr class="odd">
+<td>DMIX</td>
+<td>Смешивание при разведении</td>
+</tr>
+<tr class="even">
+<td>RMIX</td>
+<td>Смешивание реагента</td>
+</tr>
+<tr class="odd">
+<td>ALT</td>
+<td>Юстировка мешалок образца и реагента, положение луча фотометра в оптическом тракте</td>
+</tr>
+<tr class="even">
+<td>GluH_3</td>
+<td>Юстировка мешалки образца</td>
+</tr>
+<tr class="odd">
+<td>SAL</td>
+<td>Смешивание реагента и температурная стабильность</td>
+</tr>
+<tr class="even">
+<td>Amm</td>
+<td>Флюидика и смешивание образца и раствора для разведения</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="export-results-экспорт-результатов" class="level3">
+<h3 class="anchored" data-anchor-id="export-results-экспорт-результатов">20.1.3 Export Results / <strong>Экспорт результатов</strong></h3>
+<section id="export-results-from-srs-экспорт-результатов-через-srs" class="level4">
+<h4 class="anchored" data-anchor-id="export-results-from-srs-экспорт-результатов-через-srs">20.1.3.1 Export Results from SRS / <strong>Экспорт результатов через SRS</strong></h4>
+<ol type="1">
+<li>Выполните вход в <strong>SRS</strong>.</li>
+<li>В левом верхнем углу экрана нажмите кнопку <strong>Home</strong>.</li>
+<li>Выберите соответствующий регион (<strong>US</strong>, <strong>EU</strong> или <strong>CN</strong>).</li>
+<li>В поле <strong>Basic Search</strong> введите серийный номер анализатора <strong>CH 930</strong>.</li>
+<li>В правом верхнем углу экрана панели анализатора нажмите <strong>Run Action</strong>.</li>
+<li>В столбце <strong>Name</strong> найдите <strong>CH930_DQ_SRS_Results</strong>.</li>
+<li>В правой части экрана нажмите кнопку <strong>Monitor</strong> в строке <strong>CH930_DQ_SRS_Results</strong>, выберите <strong>Run</strong>, затем нажмите <strong>Close</strong>.</li>
+<li>На экране панели анализатора перейдите на вкладку <strong>Query Results</strong> и найдите <strong>CH930_DQ_SRS_Results</strong> в столбце <strong>Action Name</strong>.</li>
+<li>Если статус <strong>CH930_DQ_SRS_Results</strong> не <em>Finished</em>, нажмите значок <strong>Refresh</strong> в левом верхнем углу панели рядом с названием и серийным номером анализатора<br>
+(например, <em>Atellica CH930 Analyzer – CMXXXXX</em>).</li>
+<li>После перехода статуса в <em>Finished</em> в правой части экрана нажмите <strong>Monitor</strong> в строке <strong>CH930_DQ_SRS_Results</strong> и выберите <strong>Download</strong>.</li>
+</ol>
+<hr>
+</section>
+<section id="export-results-with-no-srs-connectivity-экспорт-результатов-при-отсутствии-подключения-к-srs" class="level4">
+<h4 class="anchored" data-anchor-id="export-results-with-no-srs-connectivity-экспорт-результатов-при-отсутствии-подключения-к-srs">20.1.3.2 Export Results with No SRS Connectivity / <strong>Экспорт результатов при отсутствии подключения к SRS</strong></h4>
+<p>Используйте данный метод для экспорта результатов CH, если SRS недоступен для системы.</p>
+<ol type="1">
+<li><p>Войдите в <strong>Service Diagnostics Mode</strong>.<br>
+См. раздел <em>Enter Service Diagnostics Mode</em> в<br>
+<strong>Common Software Service Procedures / LDAT-000.840.03</strong>.</p>
+<p><strong>— или —</strong></p></li>
+<li><p>Подключитесь к диагностике анализатора через <strong>Remote Module Access (RMA)</strong>.<br>
+См. раздел <em>Remote Module Access (RMA)</em> в<br>
+<strong>Common Software Service Procedures / LDAT-000.840.03</strong>.</p></li>
+<li><p>Перейдите в <strong>DB Tools</strong>.</p></li>
+<li><p>В поле <strong>Select Data Item</strong> выберите <strong>CH Results</strong>.</p></li>
+<li><p>Используйте поля <strong>Start Date</strong> и <strong>End Date</strong> для выбора временного диапазона результатов.</p></li>
+<li><p>Нажмите <strong>Export to CSV</strong>, чтобы экспортировать результаты в файл формата <code>.csv</code>.</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="perform-ch-atp-выполнение-ch-atp-v1.26" class="level3">
+<h3 class="anchored" data-anchor-id="perform-ch-atp-выполнение-ch-atp-v1.26">20.1.4 Perform CH ATP / <strong>Выполнение CH ATP</strong> &gt;= V1.26</h3>
+<blockquote class="blockquote">
+<p>⚠️ Данная процедура предназначена для выполнения <strong>CH ATP</strong> на системах <strong>Atellica Solution</strong> с программным обеспечением версии <strong>V1.26 и выше</strong>. Для выполнения CH ATP на системах с ПО <strong>до версии V1.26</strong> см. <em>Atellica Solution ATP Troubleshooting</em> / <strong>LDAT-000.840.55</strong>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>⚠️ Перед запуском приведённых ниже тестов убедитесь, что упаковки <strong>RPC1, RPC2, RPC4 и CHK</strong> корректно загружены в соответствии с <em>Atellica Solution Operator’s Guide</em>, а также добавлен <strong>WBA</strong>.</p>
+</blockquote>
+<p>Для каждого набора сервисных анализов используйте файл <strong>Atellica CH Analyzer – Blank ATP Spreadsheet</strong> / <strong>LDAT-010.820.01</strong> для ввода результатов тестов, экспортированных из <strong>DB Tools</strong> (см. раздел <em>DB Tools</em> документа <em>Service Software</em> / <strong>LDAT-010.840.01</strong>), с целью расчёта сводных результатов по каждому сервисному анализу.</p>
+<p>Перед переходом к следующему набору сервисных анализов убедитесь, что результаты <strong>соответствуют критериям PASS</strong>.</p>
+<blockquote class="blockquote">
+<p>ℹ️ Инструкции по вводу данных из DB Tools приведены непосредственно в <em>Blank ATP Spreadsheet</em>.</p>
+</blockquote>
+<ol type="1">
+<li>Войдите в программное обеспечение под пользователем <strong>CSE</strong>.<br>
+</li>
+<li>В нижней части экрана нажмите <strong>Service Access</strong>.</li>
+</ol>
+<section id="service-assay-testing-тестирование-сервисных-анализов" class="level4">
+<h4 class="anchored" data-anchor-id="service-assay-testing-тестирование-сервисных-анализов">20.1.4.1 Service Assay Testing / <strong>Тестирование сервисных анализов</strong></h4>
+<ol type="1">
+<li>Нажмите <strong>Analytical Testing Protocols</strong>.<br>
+</li>
+<li>Выберите <strong>CH Analytical Test Protocol</strong>.<br>
+</li>
+<li>Нажмите <strong>Next</strong>.<br>
+</li>
+<li>В разделе <strong>Select Analyzer</strong> выберите соответствующий анализатор <strong>CH 930</strong>.</li>
+</ol>
+<p><strong>Выполнение PQCV</strong></p>
+<ol type="1">
+<li>В разделе <strong>Assay Selection</strong> выберите <strong>PQCV</strong>.<br>
+</li>
+<li>Нажмите <strong>Next</strong>.<br>
+</li>
+<li>Нажмите <strong>Place Order</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p>ℹ️ Для PQCV образец не требуется. Анализатор автоматически выполнит тест.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>В появившемся окне <em>“Order placed successfully”</em> нажмите <strong>OK</strong>.<br>
+</li>
+<li>Перейдите на экран <strong>Worklist</strong> и дождитесь завершения обработки PQCV.<br>
+</li>
+<li>Оцените результаты теста <strong>PQCV</strong>.<br>
+</li>
+<li>Введите экспортированные результаты в<br>
+<strong>Atellica CH Analyzer Blank ATP Spreadsheet</strong> / <strong>LDAT-010.820.01</strong>.<br>
+</li>
+<li>Убедитесь, что тест <strong>PQCV пройден</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p>⚠️ Если PQCV не пройден, см. <strong>20.1.5 ATP Rerun Guidelines and Basic Troubleshooting</strong>. <strong>Не продолжайте</strong>, пока PQCV не будет пройден.</p>
+</blockquote>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Test Name</th>
+<th style="text-align: right;"># Replicates</th>
+<th>Pass / Fail Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PQCV</td>
+<td style="text-align: right;">221</td>
+<td>≤ 0.04 для 90% кювет</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Тесты точности дозирования реагента / P1C20, P1N20, P2C20, P2N20</strong></p>
+<ol type="1">
+<li>Повторите шаги 3–7 для перехода к экрану выбора CH ATP анализов.<br>
+</li>
+<li>В разделе <strong>Assay Selection</strong> выберите <strong>P1C20, P1N20, P2C20, P2N20</strong>.<br>
+</li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p>ℹ️ Образец не требуется. Анализатор автоматически выполнит тесты.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>После сообщения <em>“Order placed successfully”</em> нажмите <strong>OK</strong>.<br>
+</li>
+<li>На экране <strong>Worklist</strong> дождитесь завершения тестов.<br>
+</li>
+<li>Оцените результаты тестов.<br>
+</li>
+<li>Экспортируйте результаты (см. <strong>20.1.3 Export Results</strong>).<br>
+</li>
+<li>Введите данные в <em>Blank ATP Spreadsheet</em>.<br>
+</li>
+<li>Подтвердите, что тесты дозирования реагента пройдены.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Test Name</th>
+<th>Description</th>
+<th style="text-align: right;"># Replicates</th>
+<th>Pass / Fail Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P1N20</td>
+<td>Reagent Probe 1 Neat</td>
+<td style="text-align: right;">30</td>
+<td>≤ 1.25 %CV</td>
+</tr>
+<tr class="even">
+<td>P1C20</td>
+<td>Reagent Probe 1 Chased</td>
+<td style="text-align: right;">30</td>
+<td>≤ 1.25 %CV</td>
+</tr>
+<tr class="odd">
+<td>P2N20</td>
+<td>Reagent Probe 2 Neat</td>
+<td style="text-align: right;">30</td>
+<td>≤ 1.25 %CV</td>
+</tr>
+<tr class="even">
+<td>P2C20</td>
+<td>Reagent Probe 2 Chased</td>
+<td style="text-align: right;">30</td>
+<td>≤ 1.25 %CV</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>Выполнение PSN10</strong></p>
+<ol type="1">
+<li>Повторите шаги 3–7 для перехода к экрану выбора CH ATP анализов.<br>
+</li>
+<li>В разделе <strong>Assay Selection</strong> выберите <strong>PSN10</strong>.<br>
+</li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.<br>
+</li>
+<li>Будет напечатано <strong>6 штрих-кодов</strong>.<br>
+</li>
+<li>В окне <em>“Order placed. Barcodes printed”</em> нажмите <strong>OK</strong>.<br>
+</li>
+<li>Наклейте напечатанные штрих-коды на <strong>6 пробирок</strong>, каждая из которых содержит <strong>300 мкл красного раствора Atellica CHK</strong>.<br>
+</li>
+<li>Загрузите пробирки в <strong>SH</strong> или на <strong>DL</strong>.<br>
+</li>
+<li>На экране <strong>Worklist</strong> дождитесь завершения теста <strong>PSN10</strong>.<br>
+</li>
+<li>Оцените результаты, экспортируйте их и введите в <em>Blank ATP Spreadsheet</em>.<br>
+</li>
+<li>Подтвердите, что тест <strong>PSN10 пройден</strong>.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Test Name</th>
+<th>Description</th>
+<th style="text-align: right;"># Replicates</th>
+<th>Pass / Fail Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PSN10</td>
+<td>Sample / Dilution Probe</td>
+<td style="text-align: right;">30</td>
+<td>≤ 1.12 %CV</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Выполнение DMIX, SMIX и RMIX</strong></p>
+<ol type="1">
+<li>Повторите шаги 3–7 для перехода к экрану выбора CH ATP анализов.<br>
+</li>
+<li>В разделе <strong>Assay Selection</strong> выберите <strong>DMIX, SMIX и RMIX</strong>.<br>
+</li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.<br>
+</li>
+<li>Будет напечатан <strong>1 штрих-код</strong>.<br>
+</li>
+<li>В окне <em>“Order placed successfully”</em> нажмите <strong>OK</strong>.<br>
+</li>
+<li>Наклейте штрих-код на пробирку с <strong>не менее 3150 мкл синего раствора Atellica AMIX</strong>.<br>
+</li>
+<li>Загрузите пробирку на анализатор <strong>Atellica CH</strong>.<br>
+</li>
+<li>На экране <strong>Worklist</strong> дождитесь завершения MIX-тестов.<br>
+</li>
+<li>Экспортируйте результаты и введите их в <em>Blank ATP Spreadsheet</em>.<br>
+</li>
+<li>Подтвердите, что MIX-тесты пройдены.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test Name</th>
+<th>Description</th>
+<th style="text-align: right;"># Replicates</th>
+<th>Pass / Fail (ПО &lt; V1.29)</th>
+<th>Pass / Fail (ПО ≥ V1.29)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DMIX</td>
+<td>Dilution Mixer</td>
+<td style="text-align: right;">30</td>
+<td>97 – 103</td>
+<td>96.5 – 103.5</td>
+</tr>
+<tr class="even">
+<td>RMIX</td>
+<td>Reagent Mixer</td>
+<td style="text-align: right;">30</td>
+<td>97 – 103</td>
+<td>98 – 105</td>
+</tr>
+<tr class="odd">
+<td>SMIX</td>
+<td>Sample Mixer</td>
+<td style="text-align: right;">30</td>
+<td>97 – 103</td>
+<td>96.5 – 103.5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote class="blockquote">
+<p>⚠️ Перед переходом к <strong>Calibration Setup</strong> убедитесь, что <strong>все сервисные методы соответствуют требованиям (PASS)</strong>.</p>
+</blockquote>
+</section>
+<section id="perform-assay-calibration-выполнение-калибровки-анализов" class="level4">
+<h4 class="anchored" data-anchor-id="perform-assay-calibration-выполнение-калибровки-анализов">20.1.4.2 Perform Assay Calibration / <strong>Выполнение калибровки анализов</strong></h4>
+<ol type="1">
+<li><p>Войдите в систему под пользователем <strong>CSE</strong> и перейдите в <strong>Calibration Setup</strong>.</p></li>
+<li><p>В разделе <strong>Calibration Results</strong> установите:</p>
+<ul>
+<li><strong>Ordering Mode</strong> → <strong>By System</strong></li>
+<li><strong>Automatic Acceptance</strong> → <strong>Disabled</strong></li>
+<li>Снимите флажок <strong>QC Results Must Be Within Ranges</strong></li>
+</ul></li>
+<li><p>Подготовьте все <strong>CH калибраторы</strong> в соответствии с инструкциями, указанными на упаковке соответствующих продуктов.</p></li>
+</ol>
+<p><strong>Определение CH калибраторов</strong></p>
+<ol type="1">
+<li>Перейдите в <strong>Calibration Definitions</strong>.</li>
+<li>Нажмите <strong>Scan Barcodes</strong>.</li>
+<li>Отсканируйте 2D-штрихкод <strong>Table of Assigned Values</strong> соответствующего калибратора.</li>
+<li>Нажмите <strong>OK</strong>.</li>
+<li>Повторите шаги 1–4 для всех оставшихся <strong>CH калибаторов</strong>.</li>
+</ol>
+<p><strong>Загрузка реагентов</strong></p>
+<p>Загрузите реагенты для соответствующего набора анализов:</p>
+<ul>
+<li><strong>Новый набор анализов:</strong><br>
+ALT, Amm, GluH_3, Sal</li>
+<li><strong>Старый набор анализов:</strong><br>
+ALT, Amm, ALP_2c, GGT, Iron_2, GluH_3, TP</li>
+</ul>
+<p><strong>Создание заказов на калибровку</strong></p>
+<ol type="1">
+<li>Перейдите в <strong>Calibration Orders</strong>.</li>
+<li>В поле <strong>Select By</strong> выберите <strong>Assay</strong>.</li>
+<li>Выберите соответствующий анализатор.</li>
+<li>Выберите нужный набор анализов:
+<ul>
+<li><strong>Новый набор:</strong> ALT, Amm, GluH_3, Sal<br>
+</li>
+<li><strong>Старый набор:</strong> ALT, Amm, ALP_2c, GGT, Iron_2, GluH_3, TP</li>
+</ul></li>
+<li>В разделе <strong>Select Reagent</strong> отметьте флажками соответствующие реагенты.</li>
+<li>В разделе <strong>Select Calibrator Material</strong> отметьте флажками соответствующие калибраторы.</li>
+<li>Нажмите <strong>Next</strong>.</li>
+<li>Нажмите <strong>Place Order</strong>.</li>
+<li>Нажмите <strong>Print Barcode</strong>.</li>
+<li>Установите флажок слева от <strong>Print</strong>, чтобы выбрать все калибраторные материалы.</li>
+<li>Наклейте напечатанные штрихкоды на пробирки, заполните пробирки соответствующим калибраторным материалом и загрузите калибраторы.</li>
+<li>Загрузите пробирки в <strong>SH</strong> или на <strong>DL</strong>.</li>
+<li>Убедитесь, что все калибровки <strong>приняты и соответствуют требованиям</strong>, прежде чем переходить к следующим этапам.</li>
+</ol>
+</section>
+<section id="alt-qc-level-1" class="level4">
+<h4 class="anchored" data-anchor-id="alt-qc-level-1">20.1.4.3 ALT QC Level 1</h4>
+<p>После успешного завершения калибровки анализов загрузите и импортируйте рабочий лист<br>
+<strong>CH_ATP_ALTQCL1_Worklist</strong>.</p>
+<ol type="1">
+<li>Из <strong>CB-DOC</strong> загрузите<br>
+<strong>CH ATP Worklists</strong> / <strong>LDAT-010.820.03 / LDAT-010.820.05</strong><br>
+и извлеките файл <strong>CH_ATP_ALTQCL1_Worklist.csv</strong> на сервисный ноутбук.</li>
+<li>Скопируйте файл <strong>CH_ATP_ALTQCL1_Worklist.csv</strong> на USB-накопитель.</li>
+<li>Вставьте USB-накопитель в <strong>PCC</strong>.</li>
+<li>Перейдите в <strong>Worklist</strong> и выберите <strong>Import Worklist</strong><br>
+(<strong>Worklist Type → Import Worklist</strong>).</li>
+<li>Нажмите <strong>Browse</strong>, затем нажмите <strong>Browse</strong> ещё раз.</li>
+</ol>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Важно:</strong><br>
+<strong>Не открывайте файл .csv в Microsoft Excel.</strong><br>
+Excel удаляет некоторые запятые в файле, что делает рабочий лист непригодным для использования.<br>
+Для просмотра файла используйте <strong>Notepad</strong>. При необходимости убедитесь, что приложением по умолчанию для файлов <code>.csv</code> установлен <strong>Notepad</strong>, а не Excel.</p>
+</blockquote>
+<ol start="6" type="1">
+<li>В окне <strong>File Import</strong> перейдите к USB-накопителю, выберите<br>
+<strong>CH_ATP_ALTQCL1_Worklist.csv</strong> и нажмите <strong>Open</strong>.</li>
+<li>Введите <strong>Run ID</strong>.</li>
+<li>Нажмите <strong>Import Worklist</strong>.</li>
+<li>В окне завершения операции нажмите <strong>OK</strong>.</li>
+<li>Перейдите в <strong>Worklist</strong>.</li>
+<li>Установите флажок для <strong>Sample ID: ALTQCLVL1</strong>.</li>
+<li>Нажмите <strong>Print Barcode</strong>.</li>
+<li>Наклейте штрихкод на пробирку и заполните её <strong>2 мЛ BioRad Liquid Assayed MultiQual Level 1</strong>.</li>
+<li>Загрузите пробирку в <strong>SH</strong> или на <strong>DL</strong>.</li>
+<li>Отслеживайте выполнение тестов и дождитесь завершения анализов <strong>ALT</strong>, прежде чем переходить к следующему шагу.</li>
+<li>Оцените результаты теста <strong>ALT</strong>.</li>
+<li>Экспортируйте результаты в соответствующую <strong>пустую таблицу CH ATP</strong> и подтвердите, что тесты <strong>пройдены</strong><br>
+(см. <strong>20.1.3 Export Results</strong>).</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assay Name</th>
+<th style="text-align: right;"># Reps</th>
+<th>Sample ID</th>
+<th>Units</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">%CV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ALT</td>
+<td style="text-align: right;">230</td>
+<td>ALTQCLVL1</td>
+<td>U/L</td>
+<td style="text-align: right;">≤ 1.199</td>
+<td style="text-align: right;">≤ 4</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="assay-testing" class="level4">
+<h4 class="anchored" data-anchor-id="assay-testing">20.1.4.4 Assay Testing</h4>
+<p><strong>Тестирование анализов</strong></p>
+<ol type="1">
+<li>На главном экране (<strong>Home</strong>) нажмите <strong>Service Access</strong>.</li>
+<li>Выберите <strong>Service Verification</strong>.</li>
+<li>Нажмите <strong>Assay Verification</strong>, затем <strong>Next</strong>.</li>
+<li>Выберите анализатор и нажмите <strong>Next</strong><br>
+<em>(для одного задания может быть выбран только один анализатор)</em>.</li>
+</ol>
+<p><strong>GluH3 — Precision</strong></p>
+<ol type="1">
+<li>Выберите <strong>GluH_3</strong>, нажмите <strong>Next</strong>.</li>
+<li>Установите флажок <strong>Precision Evaluation Parameters</strong> и введите:
+<ul>
+<li><strong>Protocol Name:</strong> QCLVL01<br>
+</li>
+<li><strong>Number of Samples:</strong> 1<br>
+</li>
+<li><strong>Number of Replicates:</strong> 30</li>
+</ul></li>
+<li>Нажмите <strong>Next</strong>, затем <strong>Place Order</strong>.</li>
+<li>Во всплывающем окне отметьте <strong>Precision</strong> и нажмите <strong>OK</strong> для печати штрихкодов.</li>
+</ol>
+<p><strong>Amm — Precision (Plasma)</strong></p>
+<ol type="1">
+<li>На главном экране снова выберите<br>
+<strong>Service Access → Service Verification → Assay Verification → Next</strong>.</li>
+<li>Выберите анализатор, нажмите <strong>Next</strong>.</li>
+<li>В поле <strong>Specimen Type</strong> выберите <strong>Plasma</strong>.</li>
+<li>Выберите <strong>Amm</strong>, нажмите <strong>Next</strong>.</li>
+<li>Установите <strong>Precision Evaluation Parameters</strong> и введите:
+<ul>
+<li><strong>Protocol Name:</strong> Amm01<br>
+</li>
+<li><strong>Number of Samples:</strong> 1<br>
+</li>
+<li><strong>Number of Replicates:</strong> 30</li>
+</ul></li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.</li>
+<li>Во всплывающем окне отметьте <strong>Precision</strong> и нажмите <strong>OK</strong> для печати штрихкодов.</li>
+</ol>
+<p><strong>Sal — Precision</strong></p>
+<ol type="1">
+<li>Повторите путь<br>
+<strong>Service Access → Service Verification → Assay Verification → Next</strong>.</li>
+<li>Выберите анализатор, нажмите <strong>Next</strong>.</li>
+<li>Выберите <strong>Sal</strong>, нажмите <strong>Next</strong>.</li>
+<li>Установите <strong>Precision Evaluation Parameters</strong> и введите:
+<ul>
+<li><strong>Protocol Name:</strong> QCLVL02<br>
+</li>
+<li><strong>Number of Samples:</strong> 1<br>
+</li>
+<li><strong>Number of Replicates:</strong> 30</li>
+</ul></li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.</li>
+<li>Во всплывающем окне отметьте <strong>Precision</strong> и нажмите <strong>OK</strong> для печати штрихкодов.</li>
+</ol>
+<p><strong>ALT + GluH3 + Sal — Precision</strong></p>
+<ol type="1">
+<li>Повторите путь<br>
+<strong>Service Access → Service Verification → Assay Verification → Next</strong>.</li>
+<li>Выберите анализатор, нажмите <strong>Next</strong>.</li>
+<li>Выберите <strong>ALT</strong>, <strong>GluH_3</strong> и <strong>Sal</strong>, нажмите <strong>Next</strong>.</li>
+<li>Установите <strong>Precision Evaluation Parameters</strong> и введите:
+<ul>
+<li><strong>Protocol Name:</strong> QCLVL03<br>
+</li>
+<li><strong>Number of Samples:</strong> 1<br>
+</li>
+<li><strong>Number of Replicates:</strong> 30</li>
+</ul></li>
+<li>Нажмите <strong>Next</strong> → <strong>Place Order</strong>.</li>
+<li>Во всплывающем окне отметьте <strong>Precision</strong> и нажмите <strong>OK</strong> для печати штрихкодов.</li>
+</ol>
+<p><strong>Подготовка образцов</strong></p>
+<p>Наклейте штрихкоды на пробирки и заполните их в соответствии с таблицей:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sample ID</th>
+<th>Sample</th>
+<th>Assay</th>
+<th style="text-align: right;"># Reps</th>
+<th>Sample Type</th>
+<th>Recommended Sample Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AMM01</td>
+<td>BioRad Liquicheck Ethanol/Ammonia Control</td>
+<td>Amm</td>
+<td style="text-align: right;">30</td>
+<td>Plasma</td>
+<td>1 mL</td>
+</tr>
+<tr class="even">
+<td>QCLVL01</td>
+<td>BioRad Liquid Assayed MultiQual Level 1</td>
+<td>GluH_3</td>
+<td style="text-align: right;">30</td>
+<td>Serum</td>
+<td>200 µL</td>
+</tr>
+<tr class="odd">
+<td>QCLVL02</td>
+<td>BioRad Liquid Assayed MultiQual Level 2</td>
+<td>Sal</td>
+<td style="text-align: right;">30</td>
+<td>Serum</td>
+<td>200 µL</td>
+</tr>
+<tr class="even">
+<td>QCLVL03</td>
+<td>BioRad Liquid Assayed MultiQual Level 3</td>
+<td>ALT, GluH_3, Sal</td>
+<td style="text-align: right;">30</td>
+<td>Serum</td>
+<td>500 µL</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Загрузите образцы в <strong>SH</strong> или на <strong>DL</strong>.</li>
+<li>Перейдите на экран <strong>Worklist</strong> и контролируйте выполнение тестов.</li>
+<li>Экспортируйте результаты в соответствующую <strong>пустую таблицу CH ATP</strong> и подтвердите, что тесты пройдены<br>
+(см. <strong>20.1.3 Export Results</strong>).</li>
+</ol>
+<p><strong>Критерии приемлемости результатов</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assay</th>
+<th>Sample ID</th>
+<th>Units</th>
+<th style="text-align: right;"># Reps</th>
+<th style="text-align: right;">SD Limit</th>
+<th style="text-align: right;">CV Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Amm</td>
+<td>AMM01</td>
+<td>µg/dL</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6.5%</td>
+</tr>
+<tr class="even">
+<td>GluH_3</td>
+<td>QCLVL01</td>
+<td>mg/dL</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.591</td>
+<td style="text-align: right;">1.70%</td>
+</tr>
+<tr class="odd">
+<td>GluH_3</td>
+<td>QCLVL03</td>
+<td>mg/dL</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1.798</td>
+<td style="text-align: right;">1.30%</td>
+</tr>
+<tr class="even">
+<td>Sal</td>
+<td>QCLVL02</td>
+<td>mg/dL</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.492</td>
+<td style="text-align: right;">5.00%</td>
+</tr>
+<tr class="odd">
+<td>Sal</td>
+<td>QCLVL03</td>
+<td>mg/dL</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.685</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td>ALT</td>
+<td>QCLVL03</td>
+<td>U/L</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">2.379</td>
+<td style="text-align: right;">3.00%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Выполнение DILCHK</strong></p>
+<blockquote class="blockquote">
+<p>ℹ️ Раствор <strong>Dilution Check</strong> стабилен в течение <strong>15 минут</strong> после вскрытия флакона.</p>
+</blockquote>
+<ol type="1">
+<li>Приостановите анализатор <strong>CH</strong>.</li>
+<li>Нажмите <strong>Unlock Front Lid</strong>.</li>
+<li>Откройте переднюю крышку.</li>
+</ol>
+<div id="fig-ch-dilchk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ch-dilchk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/1.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ch-dilchk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Opening the Front Lid
+</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Поместите раствор <strong>DilCHK</strong> в <strong>чашку разведения (Dilution Cup)</strong> манифолда <strong>IMT</strong><br>
+(см. <em>Рис: Dilution Cup of IMT Manifold</em>).
+<ul>
+<li><ol type="1">
+<li>Dilution Cup</li>
+</ol></li>
+</ul></li>
+</ol>
+<div id="fig-dilcup" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dilcup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/2.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dilcup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Dilution Cup of IMT Manifold
+</figcaption>
+</figure>
+</div>
+<ol start="5" type="1">
+<li><p>Откройте флакон <strong>DilCHK</strong> и пипетируйте <strong>1 мЛ</strong> раствора DilCHK в <strong>1 мЛ Atellica TTSC</strong>.</p>
+<blockquote class="blockquote">
+<p>ℹ️ Если <strong>Atellica TTSC</strong> недоступны, используйте <strong>Dimension Vista SSC</strong><br>
+(SMN <strong>10472099 (KS860)</strong>).</p>
+</blockquote></li>
+<li><p>Закройте переднюю крышку анализатора.</p></li>
+<li><p>Нажмите кнопку <strong>Resume</strong>.</p></li>
+<li><p>Перейдите в <strong>Troubleshooting → Operator Diagnostics</strong>.</p></li>
+<li><p>Выберите соответствующий <strong>CH анализатор</strong>.</p></li>
+<li><p>В разделе <strong>Subsystems</strong> выберите <strong>IMT</strong>.</p></li>
+<li><p>В поле <strong>Diagnostic Name</strong> выберите <strong>IMT Dilution Check</strong> и нажмите <strong>Perform</strong><br>
+(см. <em>Рис: Performing Dilution Check</em>).</p></li>
+</ol>
+<div id="fig-perfdilchk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perfdilchk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/3.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perfdilchk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Performing Dilution Check
+</figcaption>
+</figure>
+</div>
+<ol start="12" type="1">
+<li>Если появится всплывающее окно, нажмите <strong>OK</strong><br>
+(см. <em>Рис: Dilution Check Pop-up</em>).</li>
+</ol>
+<div id="fig-perfdilpop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perfdilpop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/4.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perfdilpop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Dilution Check Pop-up
+</figcaption>
+</figure>
+</div>
+<ol start="13" type="1">
+<li>Результаты будут отображены на экране<br>
+(см. <em>Рис: Dilution Check Status</em>). <img src="png/5.png" id="fig-perfdilstatus" class="img-fluid" style="width:100.0%" alt="Dilution Check Status"></li>
+</ol>
+<p><strong>Оценка результатов DilCHK</strong></p>
+<ul>
+<li>Если тест <strong>DilCHK пройден</strong>, <strong>примите новый коэффициент коррекции</strong>.</li>
+<li>Если тест <strong>DilCHK не пройден</strong>, выполните тест повторно.</li>
+<li>Если тест <strong>не пройден второй раз</strong>, выполните устранение неисправностей IMT<br>
+(см. <em>IMT System Troubleshooting</em> / <strong>LDAT-010.840.02</strong>).</li>
+</ul>
+<p><strong>Завершение процедуры</strong></p>
+<ol type="1">
+<li>Приостановите анализатор <strong>CH</strong>.</li>
+<li>Откройте переднюю крышку.</li>
+<li>Извлеките пробирку с раствором <strong>DilCHK</strong>.</li>
+<li>Закройте переднюю крышку.</li>
+<li>Нажмите <strong>Resume</strong>.</li>
+<li>С помощью функции <strong>DB-Tools</strong> экспортируйте результаты<br>
+(см. раздел <em>DB-Tools</em> документа <em>Service Software</em> / <strong>LDAT-010.840.01</strong>).</li>
+<li>Убедитесь, что результаты соответствуют приведённым ниже критериям.</li>
+</ol>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Важно:</strong><br>
+Система <strong>не должна передаваться Application Specialist</strong> до тех пор, пока <strong>все ATP-тесты не будут успешно пройдены</strong>.<br>
+Для устранения неисправностей сервисных диагностических анализов см.:</p>
+<ul>
+<li><strong>PQCV Troubleshooting:</strong><br>
+<em>PQCV – Photometer Alignment and Reaction Bath Quality</em><br>
+(<em>Service Diagnostic Assay Troubleshooting</em> / <strong>LDAT-011.840.03</strong>)</li>
+<li><strong>Mix Troubleshooting:</strong><br>
+<em>Mix Troubleshooting</em><br>
+(<em>Service Diagnostic Assay Troubleshooting</em> / <strong>LDAT-011.840.03</strong>)</li>
+<li><strong>DilCHK Troubleshooting:</strong><br>
+<em>Dilution Check and Relative Bias Failures</em><br>
+(<em>IMT System Troubleshooting</em> / <strong>LDAT-010.840.02</strong>)</li>
+<li><strong>Metering Troubleshooting:</strong><br>
+<em>Metering Service Assays</em><br>
+(<em>Service Diagnostic Assay Troubleshooting</em> / <strong>LDAT-011.840.03</strong>)</li>
+</ul>
+</blockquote>
+<p><strong>Критерии приемлемости DilCHK </strong> <em>(Табл. 41: Dilution Check Acceptance Criteria)</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Критерий</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Na / K Precision</td>
+<td>&lt; 1% CV (Na &lt; 1.4 SD; K &lt; 0.04 SD)</td>
+</tr>
+<tr class="even">
+<td>% Bias</td>
+<td>&lt; 1.0%</td>
+</tr>
+<tr class="odd">
+<td>Relative % Bias</td>
+<td>&lt; 3%</td>
+</tr>
+<tr class="even">
+<td>Максимально допустимый диапазон коэффициента коррекции</td>
+<td>± 5% (0.950 – 1.050)</td>
+</tr>
+<tr class="odd">
+<td>Типичный диапазон коэффициента коррекции</td>
+<td>0.99 – 1.020</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="atp-rerun-guidelines-and-basic-troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="atp-rerun-guidelines-and-basic-troubleshooting">20.1.5 ATP Rerun Guidelines and Basic Troubleshooting</h3>
+<p><strong>Рекомендации по повторному выполнению ATP и базовое устранение неисправностей</strong></p>
+<blockquote class="blockquote">
+<p>ℹ️ <strong>Система не должна передаваться Application Specialist до тех пор, пока все ATP-тесты не будут успешно пройдены.</strong></p>
+</blockquote>
+<ul>
+<li><p>Если источником ошибки является <strong>анализ (assay)</strong> или <strong>образец</strong>, повторите соответствующий тест, используя <strong>новый тестовый материал</strong>.</p></li>
+<li><p>Если для устранения дефекта требуется <strong>перенастройка или юстировка</strong>, выполните <strong>все репликаты соответствующего теста дважды</strong>, чтобы подтвердить корректность устранения проблемы.<br>
+Также повторите <strong>все другие тесты</strong>, которые могли быть затронуты выполненной настройкой, <strong>даже если их исходные результаты соответствовали критериям приемлемости</strong>.</p></li>
+<li><p>Если было <strong>заменено какое-либо аппаратное обеспечение</strong>, повторите <strong>все тесты</strong>, относящиеся к заменённому оборудованию.</p></li>
+<li><p>В случае <strong>отсутствующих репликатов</strong> определите причину и выполните следующие действия:</p>
+<ul>
+<li>Если отсутствие репликатов вызвано <strong>ошибкой оператора</strong><br>
+(например, неверный рабочий лист, некорректно введённые заказы, случайная отмена теста во время выполнения, недостаточный объём образца в пробирке и т.п.),<br>
+<strong>повторите все репликаты только для уровня, на котором произошёл сбой</strong>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="im-atp-checkout" class="level2">
+<h2 class="anchored" data-anchor-id="im-atp-checkout">20.2 IM ATP Checkout</h2>
+<blockquote class="blockquote">
+<p>ℹ️ При установке <strong>нескольких IM-анализаторов</strong> для экономии времени допускается выполнять <strong>ATP-проверки параллельно</strong>.</p>
+</blockquote>
+<p>В <strong>таблице 42</strong> приведён перечень материалов, необходимых для выполнения данного тестирования (<strong>Atellica IM SVK Kit</strong>, SMN <strong>10998191</strong>).</p>
+<p><strong>Материалы</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Material</th>
+<th style="text-align: right;">Atellica IM SMN</th>
+<th>Required Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IM TSH3UL Kit (основные реагенты и калибратор)</td>
+<td style="text-align: right;">10995703</td>
+<td>1 набор</td>
+</tr>
+<tr class="even">
+<td>IM AFP Reagents</td>
+<td style="text-align: right;">10995441</td>
+<td>1 набор</td>
+</tr>
+<tr class="odd">
+<td>IM Calibrator D (калибратор AFP)</td>
+<td style="text-align: right;">10995509</td>
+<td>1 набор</td>
+</tr>
+<tr class="even">
+<td>IM ThCG Reagent</td>
+<td style="text-align: right;">10995690</td>
+<td>2 набора</td>
+</tr>
+<tr class="odd">
+<td>IM Calibrator B (калибратор ThCG)</td>
+<td style="text-align: right;">10995503</td>
+<td>1 набор</td>
+</tr>
+<tr class="even">
+<td>IM aHBcM Kit (основные/вспомогательные реагенты и калибратор)</td>
+<td style="text-align: right;">10995449</td>
+<td>1 набор</td>
+</tr>
+<tr class="odd">
+<td>IM HBc IgM Quality Control Material</td>
+<td style="text-align: right;">10995450</td>
+<td>1 набор</td>
+</tr>
+<tr class="even">
+<td>BioRad Lyphocheck ImmunoAssay Plus Controls (уровни 1, 2 и 3)</td>
+<td style="text-align: right;">370</td>
+<td>4 флакона на уровень (всего 12 флаконов)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Табл. 42. Atellica IM SVK Kit (SMN 10998191)</strong></p>
+<blockquote class="blockquote">
+<p>ℹ️ <strong>System Verification Kit</strong> предназначен <strong>только для сервисного персонала</strong> и <strong>не предназначен для применения в качестве IVD</strong>.<br>
+Все материалы, оставшиеся после завершения системной верификации, подлежат утилизации в соответствии с <strong>местными экологическими требованиями</strong>.</p>
+</blockquote>
+<section id="assay-calibrations-and-verifications-for-software-v1.26-and-later" class="level3">
+<h3 class="anchored" data-anchor-id="assay-calibrations-and-verifications-for-software-v1.26-and-later">20.2.1 Assay Calibrations and Verifications for Software v1.26 and Later</h3>
+<p><strong>Калибровка и верификация анализов для ПО v1.26 и выше</strong></p>
+<section id="perform-assay-calibrations-v1.26-and-later" class="level4">
+<h4 class="anchored" data-anchor-id="perform-assay-calibrations-v1.26-and-later">20.2.1.1 Perform Assay Calibrations (v1.26 and Later)</h4>
+<p><strong>Выполнение калибровки анализов (v1.26 и выше)</strong></p>
+<ol type="1">
+<li>Подготовьте все <strong>калибраторы и контроли</strong> в соответствии с инструкциями, указанными на упаковке соответствующих продуктов.</li>
+</ol>
+<blockquote class="blockquote">
+<p>ℹ️ <strong>Примечание:</strong> для некоторых продуктов может потребоваться перейти в <strong>Document Library</strong> и загрузить инструкции по применению (IFU).</p>
+</blockquote>
+<p><strong>Ввод Master Curve для каждого анализа</strong></p>
+<ol type="1">
+<li>В <strong>Navigator</strong> выберите <strong>IM Test Definitions</strong><br>
+(см. рис. <a href="#fig-imtdef" class="quarto-xref">Figure&nbsp;5</a>).</li>
+</ol>
+<div id="fig-imtdef" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-imtdef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/6.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imtdef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Selecting IM Test Definitions
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>На экране <strong>IM Test Definitions</strong> нажмите <strong>Scan Barcode</strong><br>
+(см. рис. <a href="#fig-im-scan" class="quarto-xref">Figure&nbsp;6</a>).</li>
+</ol>
+<div id="fig-im-scan" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-im-scan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/7.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-im-scan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Clicking Scan Barcode
+</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Начните сканирование <strong>2D-штрихкодов</strong> на карточке <strong>Master Curve</strong> для <strong>AFP</strong><br>
+(см. рис. <a href="#fig-imscanning" class="quarto-xref">Figure&nbsp;7</a>).</li>
+</ol>
+<div id="fig-imscanning" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-imscanning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/8.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imscanning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Scanning the Master Curve and Test Definition
+</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>В диалоговом окне <strong>Scan IM Test Definition</strong> нажмите <strong>OK</strong>.</li>
+<li>Повторите шаги 2–4 для анализов <strong>TSH3Ultra</strong>, <strong>ThCG</strong> и <strong>aHBcM</strong>.</li>
+</ol>
+<p><strong>Ввод определений калибраторов (Calibrator Definitions)</strong></p>
+<ol type="1">
+<li>В <strong>Navigator</strong> выберите <strong>Cal Definitions</strong>.<br>
+→ Отобразится экран <strong>Cal Definitions</strong><br>
+(см. рис. <a href="#fig-cal-definitions" class="quarto-xref">Figure&nbsp;8</a>).</li>
+</ol>
+<div id="fig-cal-definitions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cal-definitions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/9.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cal-definitions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Cal Definitions screen
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>На экране <strong>Cal Definitions</strong> последовательно отсканируйте <strong>все линейные штрихкоды</strong> с <strong>Calibrator Card</strong> для <strong>AFP</strong>, сверху вниз.</li>
+<li>В диалоговом окне <strong>Scan Barcode</strong> нажмите <strong>OK</strong>.</li>
+<li>Нажмите <strong>Print Barcodes</strong>, чтобы распечатать <strong>штрихкоды калибраторов</strong> для пробирок AFP.</li>
+<li>Повторите шаги 2–4 для <strong>TSH3Ultra</strong>, <strong>ThCG</strong> и <strong>aHBcM</strong>.</li>
+</ol>
+<p><strong>Загрузка реагентов и создание заказов на калибровку</strong></p>
+<ol type="1">
+<li>Загрузите в систему <strong>все основные и вспомогательные реагенты</strong>.</li>
+<li>В нижней части экрана <strong>Cal Definitions</strong> нажмите <strong>Calibration Orders</strong>.<br>
+→ Отобразится экран <strong>Calibration Orders</strong>.</li>
+<li>В разделе <strong>Select Assay(s) for Calibration</strong> выберите:
+<ul>
+<li><strong>AFP</strong></li>
+<li><strong>TSH3Ultra</strong></li>
+<li><strong>ThCG</strong></li>
+<li><strong>aHBcM</strong></li>
+</ul></li>
+<li>В разделе <strong>Select Reagents</strong> выберите соответствующую <strong>партию реагентов</strong>.</li>
+<li>Нажмите <strong>Next</strong>.</li>
+<li>Промаркируйте пробирки для образцов <strong>штрихкодами калибраторов</strong>, распечатанными на шаге 5, и добавьте в каждую пробирку соответствующий калибратор.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Calibrator (Test Tube)</th>
+<th>Test / Control Name (Order)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CALB</td>
+<td>ThCG</td>
+</tr>
+<tr class="even">
+<td>CALD</td>
+<td>AFP</td>
+</tr>
+<tr class="odd">
+<td>CALH</td>
+<td>TSH3UL</td>
+</tr>
+<tr class="even">
+<td>CALaHBcm</td>
+<td>aHBcm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Табл. 43. Названия калибраторов</strong></p>
+<blockquote class="blockquote">
+<p>ℹ️ <strong>Примечание:</strong><br>
+Процесс калибровки является <strong>двухточечным</strong>.<br>
+Флаконы калибраторов для каждого анализа имеют маркировку: - <strong>L</strong> — низкая концентрация<br>
+- <strong>H</strong> — высокая концентрация</p>
+<p>При этом напечатанные штрихкоды <strong>не используют обозначения L и H</strong>, а применяют <strong>«1» и «2»</strong>.<br>
+При заполнении пробирок необходимо учитывать: <strong>L = 1</strong>, <strong>H = 2</strong>.</p>
+</blockquote>
+<ol start="7" type="1">
+<li>Загрузите промаркированные пробирки с калибраторами в систему.<br>
+→ Это инициирует выполнение калибровки анализов.</li>
+</ol>
+<section id="perform-system-verification-assays-run-a-v1.26-and-later" class="level5">
+<h5 class="anchored" data-anchor-id="perform-system-verification-assays-run-a-v1.26-and-later">20.2.1.2 Perform System Verification Assays – Run A (v1.26 and Later)</h5>
+<p><strong>Выполнение системной верификации анализов — Run A (ПО v1.26 и выше)</strong></p>
+<p><strong>Run A</strong></p>
+<p>Для выполнения <strong>Run A</strong> используется следующий рабочий лист (worklist).</p>
+<hr>
+<div id="tbl-run-a-worklist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-run-a-worklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: <strong>Табл. 44. Верификация аналитической эффективности с использованием контролей — Run A</strong>
+</figcaption>
+<section id="рабочий-лист-run-a" class="level6" aria-describedby="tbl-run-a-worklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<h6 class="anchored" data-anchor-id="рабочий-лист-run-a">Рабочий лист Run A</h6>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sample ID</th>
+<th>Sample</th>
+<th>Test</th>
+<th style="text-align: right;"># Reps</th>
+<th>Dilution</th>
+<th>Sample Type</th>
+<th style="text-align: right;">Minimum Sample Volume</th>
+<th style="text-align: right;">Recommended Sample Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>BIO1A</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 1 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">399 µL</td>
+<td style="text-align: right;">500 µL</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><strong>BIO2A</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 2 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">399 µL</td>
+<td style="text-align: right;">500 µL</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td><strong>BIO3A</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 3 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">399 µL</td>
+<td style="text-align: right;">500 µL</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><strong>HNEGA</strong></td>
+<td>HBc IgM Negative Control</td>
+<td>aHBcM</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">189 µL</td>
+<td style="text-align: right;">200 µL</td>
+</tr>
+<tr class="odd">
+<td><strong>HPOSA</strong></td>
+<td>HBc IgM Positive Control</td>
+<td>aHBcM</td>
+<td style="text-align: right;">3</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">189 µL</td>
+<td style="text-align: right;">200 µL</td>
+</tr>
+</tbody>
+</table>
+</section>
+</figure>
+</div>
+<hr>
+<p>Выполните <strong>Run A</strong> для систем с программным обеспечением <strong>версии 1.26 и выше</strong>.</p>
+<ol type="1">
+<li>На главном экране (<strong>Home</strong>) нажмите <strong>Service Access</strong><br>
+(см. <em>Fig.: Clicking Service Access</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/10.png" class="img-fluid figure-img"></p>
+<figcaption>Clicking Service Access</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Нажмите <strong>Service Verification</strong><br>
+(см. <em>Fig.: Clicking Service Verification</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/11.png" class="img-fluid figure-img"></p>
+<figcaption>Clicking Service Verification</figcaption>
+</figure>
+</div>
+<p>→ Откроется экран <strong>System Verification</strong>.</p>
+<ol start="3" type="1">
+<li>На экране <strong>System Verification</strong> выберите <strong>SVK Run A</strong> и нажмите <strong>Next</strong><br>
+(см. <em>Fig.: Selecting SVK Run A</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/12.png" class="img-fluid figure-img"></p>
+<figcaption>Selecting SVK Run A</figcaption>
+</figure>
+</div>
+<p>→ Отобразится экран <strong>Create New SVK Run A</strong>.</p>
+<ol start="4" type="1">
+<li><p>Выберите соответствующий <strong>IM-анализатор</strong> и нажмите <strong>Next</strong><br>
+(см. <em>Fig.: Selecting the appropriate IM analyzer</em>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/13.png" class="img-fluid figure-img"></p>
+<figcaption>Selecting the appropriate IM analyzer</figcaption>
+</figure>
+</div>
+<p>→ Отобразится <strong>System Verification Summary</strong>.</p></li>
+<li><p>Просмотрите <strong>System Verification Summary</strong> и нажмите <strong>Place Order</strong><br>
+(см. <em>Fig.: Reviewing summary and placing order</em>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/14.png" class="img-fluid figure-img"></p>
+<figcaption>Reviewing summary and placing order</figcaption>
+</figure>
+</div>
+<p>→ Появится диалоговое окно завершения операции, будут напечатаны штрихкоды.</p></li>
+<li><p>Нажмите <strong>OK</strong>.</p></li>
+<li><p>Промаркируйте пробирки <strong>штрихкодами образцов</strong>, напечатанными на шаге 5,<br>
+и добавьте в каждую пробирку соответствующий <strong>образец (контроль)</strong><br>
+(см. <strong><a href="#tbl-run-a-worklist" class="quarto-xref">Table&nbsp;1</a></strong> для требуемых объёмов).</p></li>
+<li><p>Загрузите пробирки с образцами в систему. → Это инициирует выполнение тестов.</p></li>
+<li><p>В левом верхнем углу экрана <strong>Assay Verification</strong> нажмите значок <strong>Home</strong>,<br>
+чтобы вернуться на главный экран. Затем на главном экране нажмите <strong>Worklist</strong>.<br>
+После завершения тестов для каждого анализа будет отображено <strong>среднее значение концентрации (Mean Concentration)</strong> по <strong>3-м повторам</strong>.</p></li>
+<li><p>На экране <strong>Worklist</strong> установите флажок <strong>Filter</strong>, чтобы выбрать все анализы, затем нажмите <strong>Edit/View</strong>.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="png/15.png" class="img-fluid figure-img"></p>
+<figcaption>Selecting all assays and clicking Edit/Next</figcaption>
+</figure>
+</div>
+<p>Отобразится экран <strong>Patient Sample Details</strong>.</p>
+<ol start="11" type="1">
+<li>На экране <strong>Patient Sample Details</strong> выберите название анализа в колонке <strong>Test</strong>, чтобы открыть экран <strong>Test Details</strong>. (см. рис. <a href="#fig-select-assay-details" class="quarto-xref">Figure&nbsp;9</a>).</li>
+</ol>
+<div id="fig-select-assay-details" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-select-assay-details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/16.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-select-assay-details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Selecting the assay to open test details
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится экран <strong>Test Details</strong>.</p>
+<p>Для каждого <strong>Sample ID</strong> внесите в файл <strong>IM ATP Worksheet.xls</strong> следующие значения: - <strong>Mean Concentration</strong> - <strong>% CV</strong></p>
+<p>для каждого анализа.</p>
+<ol start="12" type="1">
+<li><blockquote class="blockquote">
+<p>ℹ️ Для анализа <strong>aHBcM</strong> вводите <strong>каждый результат как отдельный повтор</strong> - рабочий лист автоматически рассчитает <strong>Mean</strong> и <strong>% CV</strong>. Убедитесь, что <strong>все контроли дали результаты</strong>.</p>
+</blockquote></li>
+</ol>
+<div id="fig-review-test-details" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-review-test-details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/17.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-review-test-details-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Reviewing test details
+</figcaption>
+</figure>
+</div>
+<ol start="13" type="1">
+<li>Рабочий лист автоматически сравнивает <strong>Mean Concentration</strong> и <strong>% CV</strong> для каждого уровня QC с установленными спецификациями и <strong>выделяет красным</strong>, если:</li>
+</ol>
+<ul>
+<li><p>среднее значение выходит за допустимый диапазон;</p></li>
+<li><p>% CV превышает установленный предел для любого уровня QC.</p></li>
+</ul>
+<ol start="14" type="1">
+<li>Если какой-либо контроль <strong>не соответствует спецификации</strong>, его необходимо <strong>повторить</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p>ℹ️ См. раздел <strong>20.2.2 Analyze and Verify the Final Data</strong> — <em>Analyze and Verify the Final Data</em> для подтверждения приемлемости выполнения Run A. Если <strong>Run A не пройден</strong>, повторите только <strong>неудавшиеся контроли</strong>.</p>
+</blockquote>
+<ol start="15" type="1">
+<li>Перед переходом к <strong>Run B</strong> убедитесь, что <strong>все результаты приемлемы</strong>. Если повторный контроль также не проходит, выполните <strong>поиск и устранение неисправности</strong> и задокументируйте корректирующие действия. См. раздел <strong>20.2.3 Troubleshooting ATP</strong> — <em>Troubleshooting ATP</em>.</li>
+</ol>
+</section>
+</section>
+<section id="perform-system-verification-assays-run-b-v1.26-and-later" class="level4">
+<h4 class="anchored" data-anchor-id="perform-system-verification-assays-run-b-v1.26-and-later">20.2.1.3 Perform System Verification Assays – Run B (v1.26 and Later)</h4>
+<p><strong>Выполнение системной верификации анализов — Run B (ПО v1.26 и выше)</strong></p>
+<p><strong>Run B</strong></p>
+<p>Для выполнения <strong>Run B</strong> используется следующий рабочий лист (worklist).</p>
+<div id="tbl-run-b-worklist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-run-b-worklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: <strong>Табл. 45. Верификация аналитической эффективности с использованием контролей — Run B</strong>
+</figcaption>
+<div aria-describedby="tbl-run-b-worklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><strong>Рабочий лист Run B</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sample ID</th>
+<th>Sample</th>
+<th>Test</th>
+<th style="text-align: right;"># Reps</th>
+<th>Dilution</th>
+<th>Sample Type</th>
+<th style="text-align: right;">Minimum Sample Volume</th>
+<th style="text-align: right;">Recommended Sample Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>BIO1B</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 1 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">2660 µL</td>
+<td style="text-align: right;">2800 µL</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><strong>BIO2B</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 2 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">2660 µL</td>
+<td style="text-align: right;">2800 µL</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td><strong>BIO3B</strong></td>
+<td>BioRad Lyphocheck Immunoassay Plus Level 3 Control</td>
+<td>AFP</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">2660 µL</td>
+<td style="text-align: right;">2800 µL</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>TSH3Ultra</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>ThCG</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><strong>HNEGB</strong></td>
+<td>HBc IgM Negative Control</td>
+<td>aHBcM</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">420 µL</td>
+<td style="text-align: right;">600 µL</td>
+</tr>
+<tr class="odd">
+<td><strong>HPOSB</strong></td>
+<td>HBc IgM Positive Control</td>
+<td>aHBcM</td>
+<td style="text-align: right;">20</td>
+<td>Без разведения</td>
+<td>Serum</td>
+<td style="text-align: right;">420 µL</td>
+<td style="text-align: right;">600 µL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Выполните <strong>Run B</strong> для систем с программным обеспечением <strong>версии 1.26 и выше</strong>.</p>
+<p><strong>Выполнение System Verification — Run B (IM, v1.26 и выше)</strong></p>
+<ol type="1">
+<li>На главном экране (<strong>Home</strong>) нажмите <strong>Service Access</strong><br>
+(см. рис. <a href="#fig-service-access-runb" class="quarto-xref">Figure&nbsp;11</a>).</li>
+</ol>
+<div id="fig-service-access-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-service-access-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/18.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-service-access-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Clicking Service Access
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Нажмите <strong>Service Verification</strong><br>
+(см. рис. <a href="#fig-service-verification-runb" class="quarto-xref">Figure&nbsp;12</a>).</li>
+</ol>
+<div id="fig-service-verification-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-service-verification-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/19.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-service-verification-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Clicking Service Verification
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится экран <strong>Service Verification</strong>.</p>
+<ol start="3" type="1">
+<li>На экране <strong>Service Verification</strong> выберите <strong>SVK Run B</strong> и нажмите <strong>Next</strong><br>
+(см. рис. <a href="#fig-select-svk-runb" class="quarto-xref">Figure&nbsp;13</a>).</li>
+</ol>
+<div id="fig-select-svk-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-select-svk-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/20.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-select-svk-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Selecting SVK Run B
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится экран <strong>Create New SVK Run B</strong>.</p>
+<ol start="4" type="1">
+<li>Выберите соответствующий <strong>IM-анализатор</strong> и нажмите <strong>Next</strong><br>
+(см. рис. <a href="#fig-select-im-analyzer-runb" class="quarto-xref">Figure&nbsp;14</a>).</li>
+</ol>
+<div id="fig-select-im-analyzer-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-select-im-analyzer-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/21.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-select-im-analyzer-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Selecting the appropriate IM analyzer
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится <strong>System Verification Summary</strong>.</p>
+<ol start="5" type="1">
+<li>Просмотрите <strong>System Verification Summary</strong> и нажмите <strong>Place Order</strong><br>
+(см. рис. <a href="#fig-review-summary-runb" class="quarto-xref">Figure&nbsp;15</a>).</li>
+</ol>
+<div id="fig-review-summary-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-review-summary-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/22.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-review-summary-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Reviewing summary and placing order
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится диалоговое окно завершения операции, будут напечатаны штрихкоды.</p>
+<ol start="6" type="1">
+<li><p>Нажмите <strong>OK</strong>.</p></li>
+<li><p>Промаркируйте пробирки <strong>штрихкодами образцов</strong>, напечатанными на шаге 5,<br>
+и добавьте в каждую пробирку соответствующий <strong>образец (контроль)</strong><br>
+(см. табл. <a href="#tbl-run-b-worklist" class="quarto-xref">Table&nbsp;2</a> для требуемых объёмов).</p></li>
+<li><p>Загрузите пробирки с образцами в систему.<br>
+→ Это инициирует выполнение тестов.</p></li>
+</ol>
+<hr>
+<p><strong>Контроль выполнения и просмотр результатов Run B</strong></p>
+<ol start="9" type="1">
+<li><p>В правом верхнем углу экрана <strong>Assay Verification</strong> нажмите значок <strong>Home</strong>,<br>
+чтобы вернуться на главный экран. Затем на главном экране нажмите <strong>Worklist</strong>.</p></li>
+<li><p>После завершения тестов для каждого анализа будет отображено<br>
+<strong>среднее значение концентрации (Mean Concentration)</strong> по <strong>20 повторам</strong>.</p></li>
+<li><p>На экране <strong>Worklist</strong> установите флажок <strong>Filter</strong>, чтобы выбрать <strong>все анализы</strong>, затем нажмите <strong>Edit/View</strong> (см. рис. <a href="#fig-edit-view-runb" class="quarto-xref">Figure&nbsp;16</a>).</p></li>
+</ol>
+<div id="fig-edit-view-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-edit-view-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/23.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edit-view-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Selecting all assays and clicking Edit/Next
+</figcaption>
+</figure>
+</div>
+<p>→ Отобразится экран <strong>Patient Sample Details</strong>.</p>
+<ol start="12" type="1">
+<li>На экране <strong>Patient Sample Details</strong> выберите название анализа в колонке <strong>Test</strong>, чтобы открыть экран <strong>Test Details</strong> (см. рис. <a href="#fig-open-test-details-runb" class="quarto-xref">Figure&nbsp;17</a>).</li>
+</ol>
+<div id="fig-open-test-details-runb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-open-test-details-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="png/24.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-open-test-details-runb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Selecting the assay to open test details
+</figcaption>
+</figure>
+</div>
+<pre><code>→ Отобразится экран **Test Details**  
+(см. рис. @fig-review-test-details-runb).</code></pre>
+<hr>
+<p><strong>Заполнение и оценка результатов Run B</strong></p>
+<ol start="13" type="1">
+<li><p>Для каждого <strong>Sample ID</strong> внесите в <strong>IM ATP Worksheet</strong> значения:</p>
+<ul>
+<li><strong>Mean Concentration</strong></li>
+<li><strong>% CV</strong></li>
+</ul>
+<p>См. <em>Atellica IM Analyzer – Blank ATP Spreadsheets</em> / <strong>LDAT-030.820.01</strong>.</p>
+<blockquote class="blockquote">
+<p>ℹ️ Для анализа <strong>aHBcM</strong> вводите <strong>каждый результат как отдельный повтор</strong> —<br>
+рабочий лист автоматически рассчитает <strong>Mean</strong> и <strong>% CV</strong>.<br>
+Убедитесь, что <strong>все контроли дали результаты</strong>.</p>
+</blockquote></li>
+<li><p>Рабочий лист автоматически сравнивает <strong>Mean Concentration</strong> и <strong>% CV</strong><br>
+с установленными спецификациями и <strong>выделяет значения красным</strong>, если:</p>
+<ul>
+<li>среднее значение выходит за допустимый диапазон;</li>
+<li>% CV превышает допустимый предел для любого уровня QC.</li>
+</ul></li>
+</ol>
+<hr>
+<p><strong>Принятие решения по Run B</strong></p>
+<ul>
+<li>Если какой-либо контроль <strong>не соответствует спецификации</strong>, его необходимо <strong>повторить</strong>.</li>
+<li>Для признания контроля неудовлетворительным он должен<br>
+<strong>не соответствовать критериям приемлемости в двух последовательных запусках</strong>.</li>
+<li>Перед завершением процедуры убедитесь, что <strong>все результаты приемлемы</strong>.</li>
+<li>Если повторный контроль также не проходит, выполните<br>
+<strong>поиск и устранение неисправности</strong> и задокументируйте корректирующие действия.</li>
+</ul>
+<p>См. раздел <strong>20.2.3 Troubleshooting ATP</strong> — <em><a href="#tbl-atp-troubleshooting" class="quarto-xref">Table&nbsp;3</a></em>.</p>
+</section>
+</section>
+<section id="analyze-and-verify-the-final-data" class="level3">
+<h3 class="anchored" data-anchor-id="analyze-and-verify-the-final-data">20.2.2 Analyze and Verify the Final Data</h3>
+<p><strong>Анализ и подтверждение итоговых данных</strong></p>
+<p>Выполните анализ полученных данных.<br>
+Для <strong>каждого анализа и каждого уровня контроля</strong> должно быть получено <strong>23 точки данных</strong>:</p>
+<ul>
+<li><p><strong>3 повтора из Run A</strong></p></li>
+<li><p><strong>20 повторов из Run B</strong></p></li>
+</ul>
+<p>Сравните полученные данные со спецификациями, приведёнными:</p>
+<ul>
+<li><p>в <strong>вкладыше к System Verification Kit</strong>, либо</p></li>
+<li><p>в файле <strong>Atellica IM Analyzer – Blank ATP Spreadsheets</strong><br>
+(<em>Atellica Solution CB-DOC / LDAT-030.820.01</em>).</p></li>
+</ul>
+<p>Файл <strong>Atellica IM Analyzer – ATP Blank Spreadsheet</strong> позволяет <strong>объединять и оценивать</strong> данные контролей SVK.</p>
+<hr>
+<p><strong>Ввод данных в ATP-worksheet</strong></p>
+<ol type="1">
+<li>На экране результатов внесите в соответствующие поля рабочего листа:
+<ul>
+<li><strong>Mean (среднее значение)</strong><br>
+</li>
+<li><strong>Coefficient of Variation (CV)</strong><br>
+для каждого уровня контроля.</li>
+</ul></li>
+</ol>
+<blockquote class="blockquote">
+<p>ℹ️ В рабочем листе используется термин <strong>WRCV (Within Run Coefficient of Variation)</strong> — коэффициент вариации внутри одного запуска.</p>
+</blockquote>
+<ol start="2" type="1">
+<li>Для контролей <strong>HBNEG</strong> и <strong>HBPOS</strong> вручную введите <strong>индивидуальные результаты анализов</strong>:
+<ul>
+<li>в правой части рабочего листа</li>
+<li>отдельно для <strong>Run A</strong> и <strong>Run B</strong></li>
+</ul>
+→ Среднее значение и CV будут рассчитаны автоматически и перенесены в таблицу <strong>Control Recovery</strong>, расположенную слева.</li>
+</ol>
+<hr>
+<p><strong>Интерпретация результатов в рабочем листе</strong></p>
+<ul>
+<li><p>Значения, которые:</p>
+<ul>
+<li>выходят за допустимый диапазон <strong>Mean</strong>, или</li>
+<li>превышают допустимый предел <strong>CV</strong>,<br>
+будут <strong>подсвечены красным</strong>.</li>
+</ul></li>
+<li><p>Все поля оцениваются в соответствии с <strong>критериями приемлемости</strong>, указанными ниже.</p></li>
+<li><p>Итоговый статус <strong>SVK Status</strong> отображается в <strong>нижней левой части рабочего листа</strong>:</p>
+<ul>
+<li><strong>PASS</strong> — зелёный фон<br>
+</li>
+<li><strong>FAIL</strong> — красный фон</li>
+</ul></li>
+</ul>
+<hr>
+<p><strong>Критерии приемлемости данных ATP (для одного запуска)</strong></p>
+<p>Данные одного запуска считаются <strong>приемлемыми</strong>, если выполняются <strong>все условия</strong>:</p>
+<ul>
+<li><strong>Не более одного контроля</strong> для <strong>одного метода</strong> может не соответствовать спецификации по <strong>CV</strong><br>
+<strong>И</strong></li>
+<li><strong>Не более двух контролей</strong> во всём запуске могут не соответствовать спецификациям по <strong>CV</strong><br>
+<strong>И</strong></li>
+<li><strong>Средние концентрации (Mean)</strong> всех контролей для всех методов находятся <strong>в заданных диапазонах</strong></li>
+</ul>
+<hr>
+<p><strong>Дальнейшие действия</strong></p>
+<ul>
+<li>Если <strong>один запуск</strong> не соответствует приведённым выше критериям:
+<ul>
+<li>сервисный инженер должен <strong>повторить только неудавшиеся контроли</strong> для данного запуска;</li>
+<li>после получения приемлемых результатов продолжить выполнение <strong>ATP-протокола</strong>.</li>
+</ul></li>
+<li>Если данные <strong>всего ATP-протокола</strong> не соответствуют критериям:
+<ul>
+<li>требуется <strong>поиск и устранение неисправностей</strong>;</li>
+<li>продолжите с разделом <strong>Troubleshooting System Verification Assays</strong><br>
+или обратитесь к <strong>Atellica Solution Operator’s Guide</strong> для дополнительной информации;</li>
+<li>выполненные <strong>корректирующие действия должны быть задокументированы</strong>;</li>
+<li>после этого <strong>весь ATP выполняется повторно</strong>.</li>
+</ul></li>
+</ul>
+<hr>
+<blockquote class="blockquote">
+<p>ℹ️ <strong>После завершения системной верификации</strong>: - все оставшиеся материалы подлежат утилизации в соответствии с <strong>местными экологическими требованиями</strong>; - все результаты должны быть <strong>переведены в архив (historical)</strong>.</p>
+</blockquote>
+</section>
+<section id="troubleshooting-atp" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-atp">20.2.3 Troubleshooting ATP</h3>
+<p><strong>Устранение неисправностей ATP</strong></p>
+<p>Используйте приведённую ниже таблицу для проверки <strong>параметров и факторов производительности</strong> при возникновении проблем с анализами.<br>
+Если проблема затрагивает <strong>более одного анализа</strong>, ищите <strong>схожие закономерности</strong> в собранной информации и определяйте, <strong>что является общим</strong> для проблемных анализов.</p>
+<hr>
+<div id="tbl-atp-troubleshooting" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-atp-troubleshooting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: <strong>Табл. 46. Troubleshooting ATP</strong>
+</figcaption>
+<div aria-describedby="tbl-atp-troubleshooting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assay</th>
+<th style="text-align: right;">Sample</th>
+<th style="text-align: right;">Outer Incubation</th>
+<th style="text-align: right;">Inner Incubation</th>
+<th>RP1</th>
+<th style="text-align: right;">RP2</th>
+<th>RP3</th>
+<th style="text-align: right;">WS1</th>
+<th>WS2</th>
+<th style="text-align: right;">WSWD</th>
+<th>WS3</th>
+<th style="text-align: right;">WS4</th>
+<th>WSRS</th>
+<th style="text-align: right;">Acid / Base</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>AFP</strong></td>
+<td style="text-align: right;">10 µL</td>
+<td style="text-align: right;">59 cycles</td>
+<td style="text-align: right;">N/A</td>
+<td>Double Pick SP/LR</td>
+<td style="text-align: right;">250 / 50</td>
+<td>N/A</td>
+<td style="text-align: right;">N/A</td>
+<td>H₂O</td>
+<td style="text-align: right;">1500 µL</td>
+<td>N/A</td>
+<td style="text-align: right;">N/A</td>
+<td>H₂O</td>
+<td style="text-align: right;">1000 µL</td>
+</tr>
+<tr class="even">
+<td><strong>TSH3UL</strong></td>
+<td style="text-align: right;">75 µL</td>
+<td style="text-align: right;">88 cycles</td>
+<td style="text-align: right;">N/A</td>
+<td>Double Pick LR/AWR</td>
+<td style="text-align: right;">38 / 38</td>
+<td>N/A</td>
+<td style="text-align: right;">SP</td>
+<td>150 µL</td>
+<td style="text-align: right;">IM Wash</td>
+<td>1500 µL</td>
+<td style="text-align: right;">Asp</td>
+<td>IM Wash</td>
+<td style="text-align: right;">900 µL</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;">IM Wash</td>
+<td>1000 µL</td>
+<td style="text-align: right;">Asp</td>
+<td>N/A</td>
+<td style="text-align: right;">300 µL</td>
+<td></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td><strong>aHBcM</strong></td>
+<td style="text-align: right;">15 µL</td>
+<td style="text-align: right;">179 cycles</td>
+<td style="text-align: right;">136 cycles</td>
+<td>Ancillary Pack</td>
+<td style="text-align: right;">200 µL</td>
+<td>Inner Ring</td>
+<td style="text-align: right;">LR</td>
+<td>95 µL</td>
+<td style="text-align: right;">SP</td>
+<td>250 µL</td>
+<td style="text-align: right;">IM Wash</td>
+<td>1500 µL</td>
+<td style="text-align: right;">IM Wash</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;">IM Wash</td>
+<td>1000 µL</td>
+<td style="text-align: right;">N/A</td>
+<td>IM Wash</td>
+<td style="text-align: right;">1000 µL</td>
+<td>Asp</td>
+<td style="text-align: right;">IM Wash</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;">200 µL</td>
+<td>300 µL</td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td><strong>ThCG</strong></td>
+<td style="text-align: right;">25 µL</td>
+<td style="text-align: right;">59 cycles</td>
+<td style="text-align: right;">N/A</td>
+<td>SP</td>
+<td style="text-align: right;">225 µL</td>
+<td>LR</td>
+<td style="text-align: right;">50 µL</td>
+<td>N/A</td>
+<td style="text-align: right;">N/A</td>
+<td>IM Wash / MegaWash</td>
+<td style="text-align: right;">750 / 900 µL</td>
+<td>N/A</td>
+<td style="text-align: right;">N/A</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;">IM Wash / MegaWash</td>
+<td>900 / 900 µL</td>
+<td style="text-align: right;">Asp</td>
+<td>N/A</td>
+<td style="text-align: right;">300 µL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+<p><strong>Как использовать таблицу</strong></p>
+<ul>
+<li>Сравнивайте <strong>объём образца</strong>, <strong>циклы инкубации</strong>, <strong>тип и объёмы реагентов</strong>,<br>
+а также <strong>последовательность промывок</strong> между анализами.</li>
+<li>При сбоях сразу в нескольких анализах обращайте внимание на:
+<ul>
+<li>общие <strong>промывочные станции (WS)</strong>;</li>
+<li>одинаковые <strong>типы реагентов (SP, LR, IM Wash, MegaWash)</strong>;</li>
+<li>совпадающие <strong>циклы инкубации</strong> или <strong>объёмы дозирования</strong>.</li>
+</ul></li>
+<li>Используйте таблицу как отправную точку для выбора направления<br>
+дальнейшего <strong>аппаратного или методического troubleshooting</strong>.</li>
+</ul>
+<hr>
+<p>При необходимости см. также разделы:</p>
+<ul>
+<li><p><strong>Service Diagnostic Assay Troubleshooting / LDAT-011.840.03</strong></p></li>
+<li><p><strong>IMT System Troubleshooting / LDAT-010.840.02</strong></p></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Edy888\.github\.io\/doc\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
